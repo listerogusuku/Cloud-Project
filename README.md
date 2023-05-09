@@ -1,6 +1,6 @@
 # :cloud: SITE SEM SERVIDOR UTILIZANDO O AWS S3
 
-# Desenvolvedor
+## :man_technologist: Desenvolvedor
 <div align="center" style="max-width:68rem;">
 <table>
   <tr>
@@ -9,6 +9,11 @@
   </tr>
 </table>
 </div>
+
+## :globe_with_meridians: Sobre a AWS
+A AWS (Amazon Web Services) é o maior e mais conhecido  serviço de Computação em Nuvem do mundo (2023).
+> A computação em nuvem é um modelo de tecnologia de informação que permite o acesso sob demanda a um conjunto compartilhado de recursos de computação, como servidores, armazenamento, aplicativos e serviços, por meio da internet. Em outras palavras, a computação em nuvem é uma forma de disponibilizar recursos computacionais através da internet, em vez de ter todos os recursos armazenados localmente em um único computador ou servidor. Esses recursos são gerenciados e mantidos por provedores de serviços em nuvem, como a Amazon Web Services, Microsoft Azure e Google Cloud Platform.
+> A computação em nuvem pode ser utilizada para diversas finalidades, como armazenar arquivos e documentos, hospedar aplicativos, desenvolver e testar software, processar dados em larga escala, entre outras. A principal vantagem da computação em nuvem é que ela permite que as empresas e usuários finais utilizem recursos computacionais de forma flexível e escalável, sem precisar investir em infraestrutura de TI própria. Além disso, a computação em nuvem oferece maior disponibilidade e segurança de dados do que soluções locais, já que os provedores de serviços em nuvem costumam ter data centers redundantes e medidas de segurança avançadas para proteger os dados dos usuários.
 
 ## :pencil: Sobre o Projeto
 
