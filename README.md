@@ -38,7 +38,7 @@ Caso você não possua o Terraform no seu computador, é necessário baixar e in
 
 Após a instalação do Terraform na máquina, já é possível rodar a infraestrutura desenvolvida.
 
-O primeiro passo é clonar este repositório em uma pasta dentro do seu computador. Caso não saiba como clonar um repositório na sua máquina local, assista o tutorial presente [neste link](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) ou faça o download do respositório e descompacte o arquivo .zip no local desejado.
+O primeiro passo é clonar este repositório em uma pasta dentro do seu computador. Caso não saiba como clonar um repositório na sua máquina local, acesse o tutorial presente [neste link](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) ou faça o download do respositório e descompacte o arquivo .zip no local desejado.
 
 
 
