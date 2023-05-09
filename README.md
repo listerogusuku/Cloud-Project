@@ -1,9 +1,18 @@
 # :cloud: SITE SEM SERVIDOR UTILIZANDO O AWS S3
 
+# Desenvolvedor
+<div align="center" style="max-width:68rem;">
+<table>
+  <tr>
+   <td align="center"><a href="https://github.com/listerogusuku"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/listerogusuku" width="100px;" alt=""/><br /><sub><b>Lister Ogusuku</b></sub></a><br /><a href="https://github.com/listerogusuku" title="Lister Ogusuku"></a>Developer</td>
+
+  </tr>
+</table>
+</div>
+
 ## :pencil: Sobre o Projeto
 
 O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da AWS (Amazon Web Services). A ideia é subir um site utilizando, inicialmente, o S3, Lambda e o API Gateway.
-
 
 
 Instalação
