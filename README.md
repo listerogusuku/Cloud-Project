@@ -1,4 +1,4 @@
-# :cloud: SITE SEM SERVIDOR UTILIZANDO O AWS S3
+# :cloud: APLICAÇÃO SEM SERVIDOR UTILIZANDO O AWS S3
 
 ## :man_technologist: Desenvolvedor
 <div align="center" style="max-width:68rem;">
