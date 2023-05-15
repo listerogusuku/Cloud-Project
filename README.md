@@ -17,7 +17,7 @@
 
 ## :pencil: Sobre o Projeto
 
-O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da AWS (Amazon Web Services). A ideia é subir um site utilizando, inicialmente, o **S3, Lambda e o API Gateway.**
+O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da AWS (Amazon Web Services). A ideia é subir uma aplicação sem servidor utilizando, inicialmente, o **S3, Lambda e o API Gateway.**
 
 
 ## Desenvolvendo a infraestrutura
