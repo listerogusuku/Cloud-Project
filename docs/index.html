@@ -234,8 +234,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recursos-markdown" class="md-nav__link">
-    Recursos Markdown
+  <a href="#criando-uma-funcao-lambda-no-terraform" class="md-nav__link">
+    Criando uma função Lambda no Terraform
   </a>
   
 </li>
@@ -289,8 +289,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recursos-markdown" class="md-nav__link">
-    Recursos Markdown
+  <a href="#criando-uma-funcao-lambda-no-terraform" class="md-nav__link">
+    Criando uma função Lambda no Terraform
   </a>
   
 </li>
@@ -320,46 +320,49 @@
 </ul>
 <h2 id="comecando">Começando<a class="headerlink" href="#comecando" title="Permanent link">&para;</a></h2>
 <p>Para seguir esse tutorial é necessário:</p>
-<ul>
-<li><strong>Hardware:</strong> DE10-Standard e acessórios</li>
-<li><strong>Softwares:</strong> Quartus 18.01</li>
-<li><strong>Documentos:</strong> <a href="https://github.com/Insper/DE10-Standard-v.1.3.0-SystemCD/tree/master/Manual">DE10-Standard_User_manual.pdf</a></li>
-</ul>
+<!--
+- **Hardware:** DE10-Standard e acessórios
+- **Softwares:** Quartus 18.01
+- **Documentos:** [DE10-Standard_User_manual.pdf](https://github.com/Insper/DE10-Standard-v.1.3.0-SystemCD/tree/master/Manual) -->
+
 <h2 id="motivacao">Motivação<a class="headerlink" href="#motivacao" title="Permanent link">&para;</a></h2>
 <p>Expliquem porque quiseram fazer esse tutorial.</p>
 <hr />
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Essas duas partes são obrigatórias no tutorial:</p>
-<ul>
-<li>Nome de vocês</li>
-<li>Começando</li>
-<li>Motivação</li>
-</ul>
 </div>
-<h2 id="recursos-markdown">Recursos Markdown<a class="headerlink" href="#recursos-markdown" title="Permanent link">&para;</a></h2>
-<p>Vocês podem usar tudo que já sabem de markdown mais alguns recursos:</p>
+<p>Essas duas partes são obrigatórias no tutorial:</p>
+<div class="codehilite"><pre><span></span><code>- Nome de vocês
+- Começando
+- Motivação
+</code></pre></div>
+
+<h2 id="criando-uma-funcao-lambda-no-terraform">Criando uma função Lambda no Terraform<a class="headerlink" href="#criando-uma-funcao-lambda-no-terraform" title="Permanent link">&para;</a></h2>
+<p>O primeiro passo será criarmos uma função lambda que, futuramente, será integrada com o AWS API Gateway.
+Inicialmente, começaremos com uma função simples sem nenhuma dependência.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Bloco de destaque de texto, pode ser:</p>
-<ul>
-<li>note, example, warning, info, tip, danger</li>
-</ul>
 </div>
+<p>Bloco de destaque de texto, pode ser:</p>
+<div class="codehilite"><pre><span></span><code>- note, example, warning, info, tip, danger
+</code></pre></div>
+
 <div class="admonition example">
 <p class="admonition-title">Faça assim</p>
+</div>
 <p>É possível editar o título desses blocos</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Isso também é possível de ser feito, mas
-use com parcimonia.</p>
-</div>
-</div>
+<div class="codehilite"><pre><span></span><code>!!! warning
+    Isso também é possível de ser feito, mas
+    use com parcimonia.
+</code></pre></div>
+
 <details class="info">
 <summary>Info</summary>
+</details>
 <p>Também da para esconder o texto, usar para coisas
 muito grandes, ou exemplos de códigos.</p>
-<div class="highlight"><pre><span></span><code>...
+<div class="codehilite"><pre><span></span><code>```txt
+...
 
 
 
@@ -372,50 +375,584 @@ muito grandes, ou exemplos de códigos.</p>
 
 
 oi!
+```
 </code></pre></div>
-</details>
+
 <ul>
 <li><strong>Esse é um texto em destaque</strong></li>
 <li><mark>Pode fazer isso também</mark></li>
 </ul>
 <p>Usar emojis da lista:</p>
 <p><img alt="💕" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f495.svg" title=":two_hearts:" /> - <a href="https://github.com/caiyongji/emoji-list">https://github.com/caiyongji/emoji-list</a></p>
-<div class="highlight"><pre><span></span><code><span class="c1">// da para colocar códigos</span>
-<span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1"><strong>index.js</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Event: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">queryStringParameters</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">queryStringParameters</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">queryStringParameters</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div>
-<p>É legal usar abas para coisas desse tipo:</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">C</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<p>Ao invocar essa função com uma consulta de URL e com o parâmetro Name definido, ela retornará "Hello, Name!".</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// index.js</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Event: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">queryStringParameters</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">queryStringParameters</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">queryStringParameters</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">httpMethod</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">statusCode</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">responseMessage</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}),</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Também será verificado o método <strong>HTTP GET e POST</strong> para que seja verificada a resposta padrão. Foi especificado o <strong>código de status '200',
+tipo de conteúdo e a mensagem</strong> para ser retornada ao chamador.</p>
+<p>Agora que nossa handler já está pronta, começaremos a trabalhar em alguns elementos do nosso Terraform.
+Criaremos os arquivos <strong><em>.tf</em></strong> dentro de uma pasta intitulada (por motivos intuitivos, claro) como "terraform".</p>
+<p>Começaremos criando o arquivo "provider.tf", em que serão declaradas as restrições de versão para os diferentes provedores AWS e afins.</p>
+<div class="tabbed-set" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1"><strong>terraform/provider.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hashicorp/aws&quot;</span>
+<span class="w">        </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 4.21.0&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="c1">    //random = {</span>
+<span class="c1">    //    source = &quot;hashicorp/random&quot;</span>
+<span class="c1">    //    version = &quot;~&gt; 3.3.0&quot;</span>
+<span class="c1">    //    }</span>
+<span class="c1">    //archive = {</span>
+<span class="c1">    //    source = &quot;hashicorp/archive&quot;</span>
+<span class="c1">    //    version = &quot;~&gt; 2.2.0&quot;</span>
+<span class="c1">    //    }</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="na">required_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 1.0&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Agora nós construiremos uma função com todas as dependências, empacotaremos como um arquivo <strong><em>zip</em></strong> para que, assim,
+consigamos subir num bucket do S3. Ou seja, quando criamos o lambda, apontamos para esse objeto de arquvo zip no bucket S3.</p>
+<p>Como os nomes dos buckets do S3 devem ser <strong>únicos e exclusivos</strong> no mundo inteiro, podemos utilizar um gerador aleatório para
+nos ajudar a nomear nosso bucket S3.</p>
+<div class="tabbed-set" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1"><strong>terraform/lambda-bucket.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lambda&quot;</span>
+<span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Em seguida, vamos criar o próprio bucket do S3 com o nome gerado.</p>
+<div class="tabbed-set" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1"><strong>terraform/lambda-bucket.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lambda&quot;</span>
+<span class="w">  </span><span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">bucket</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">random_pet.lambda_bucket_name.id</span>
+<span class="err">+</span><span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Por padrão, deixaremos todo o acesso público bloqueado.</p>
+<div class="tabbed-set" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1"><strong>terraform/lambda-bucket.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lambda&quot;</span>
+<span class="w">  </span><span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">random_pet.lambda_bucket_name.id</span>
+<span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket_public_access_block&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.lambda_bucket.id</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">block_public_acls</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="err">+</span><span class="w">  </span><span class="na">block_public_policy</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="err">+</span><span class="w">  </span><span class="na">ignore_public_acls</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="err">+</span><span class="w">  </span><span class="na">restrict_public_buckets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Agora criaremos o código Terraform do lambda. Lembrando que o lambda exigirá acesso a outros serviços da AWS (como o CloudWatch, para gravar logs) e, no nosso caso, concederemos acesso ao bucket do S3 para que seja possível a leitura de um arquivo.</p>
+<p>Para isso, precisamos criar uma função do IAM e permitir que o lambda a use.</p>
+<div class="tabbed-set" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
+
+<span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
+<span class="sh">{</span>
+<span class="sh">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
+<span class="sh">  &quot;Statement&quot;: [</span>
+<span class="sh">    {</span>
+<span class="sh">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+<span class="sh">      &quot;Principal&quot;: {</span>
+<span class="sh">        &quot;Service&quot;: &quot;lambda.amazonaws.com&quot;</span>
+<span class="sh">      },</span>
+<span class="sh">      &quot;Action&quot;: &quot;sts:AssumeRole&quot;</span>
+<span class="sh">    }</span>
+<span class="sh">  ]</span>
+<span class="sh">}</span>
+<span class="dl">POLICY</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role_policy_attachment&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_policy&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.name</span>
+<span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>O próximo recurso será criar a função lambda, a qual chamaremos de "hello". Em seguida especificaremos o nome do intervalo onde
+armazenaremos todos os lambdas. E nosso key pointing irá apontar para um arquivo zip com uma função.</p>
+<p>O hash do código-fonte foi adicionado para reimplementar a função caso seja alterado/atualizado algo no código-fonte.
+Se o hash do arquivo zip for diferente, a reimplantação do lambda será forçada.</p>
+<div class="tabbed-set" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><label for="__tabbed_7_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
+
+<span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
+<span class="sh">{</span>
+<span class="sh">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
+<span class="sh">  &quot;Statement&quot;: [</span>
+<span class="sh">    {</span>
+<span class="sh">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+<span class="sh">      &quot;Principal&quot;: {</span>
+<span class="sh">        &quot;Service&quot;: &quot;lambda.amazonaws.com&quot;</span>
+<span class="sh">      },</span>
+<span class="sh">      &quot;Action&quot;: &quot;sts:AssumeRole&quot;</span>
+<span class="sh">    }</span>
+<span class="sh">  ]</span>
+<span class="sh">}</span>
+<span class="dl">POLICY</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role_policy_attachment&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_policy&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.name</span>
+<span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_lambda_function&quot;</span><span class="w"> </span><span class="nv">&quot;hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">function_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">s3_bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.lambda_bucket.id</span>
+<span class="err">+</span><span class="w">  </span><span class="na">s3_key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_object.lambda_hello.key</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nodejs16.x&quot;</span>
+<span class="err">+</span><span class="w">  </span><span class="na">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;function.handler&quot;</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">source_code_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.archive_file.lambda_hello.output_base64sha256</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.arn</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Para depurar, criamos um grupo de logs do CloudWatch que conseguisse armazenar todas as instruções e erros do console.log na função.
+Definimos a retenção para 30 dias, porém poderia ser uma quantidade maior ou menor também, a depender das intenções de quem está
+desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de execução do lambda).</p>
+<div class="tabbed-set" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><label for="__tabbed_8_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
+
+<span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
+<span class="sh">{</span>
+<span class="sh">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
+<span class="sh">  &quot;Statement&quot;: [</span>
+<span class="sh">    {</span>
+<span class="sh">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+<span class="sh">      &quot;Principal&quot;: {</span>
+<span class="sh">        &quot;Service&quot;: &quot;lambda.amazonaws.com&quot;</span>
+<span class="sh">      },</span>
+<span class="sh">      &quot;Action&quot;: &quot;sts:AssumeRole&quot;</span>
+<span class="sh">    }</span>
+<span class="sh">  ]</span>
+<span class="sh">}</span>
+<span class="dl">POLICY</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role_policy_attachment&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_policy&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.name</span>
+<span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_lambda_function&quot;</span><span class="w"> </span><span class="nv">&quot;hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">function_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span>
+
+<span class="w">  </span><span class="na">s3_bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.lambda_bucket.id</span>
+<span class="w">  </span><span class="na">s3_key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_object.lambda_hello.key</span>
+
+<span class="w">  </span><span class="na">runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nodejs16.x&quot;</span>
+<span class="w">  </span><span class="na">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;function.handler&quot;</span>
+
+<span class="w">  </span><span class="na">source_code_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.archive_file.lambda_hello.output_base64sha256</span>
+
+<span class="w">  </span><span class="na">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.arn</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_cloudwatch_log_group&quot;</span><span class="w"> </span><span class="nv">&quot;hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/lambda/${aws_lambda_function.hello.function_name}&quot;</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">retention_in_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Em seguida, adicionaremos o recurso que empacota o lambda como um arquivo zip.</p>
+<div class="tabbed-set" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><label for="__tabbed_9_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
+
+<span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
+<span class="sh">{</span>
+<span class="sh">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
+<span class="sh">  &quot;Statement&quot;: [</span>
+<span class="sh">    {</span>
+<span class="sh">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+<span class="sh">      &quot;Principal&quot;: {</span>
+<span class="sh">        &quot;Service&quot;: &quot;lambda.amazonaws.com&quot;</span>
+<span class="sh">      },</span>
+<span class="sh">      &quot;Action&quot;: &quot;sts:AssumeRole&quot;</span>
+<span class="sh">    }</span>
+<span class="sh">  ]</span>
+<span class="sh">}</span>
+<span class="dl">POLICY</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role_policy_attachment&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_policy&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.name</span>
+<span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_lambda_function&quot;</span><span class="w"> </span><span class="nv">&quot;hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">function_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span>
+
+<span class="w">  </span><span class="na">s3_bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.lambda_bucket.id</span>
+<span class="w">  </span><span class="na">s3_key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_object.lambda_hello.key</span>
+
+<span class="w">  </span><span class="na">runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nodejs16.x&quot;</span>
+<span class="w">  </span><span class="na">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;function.handler&quot;</span>
+
+<span class="w">  </span><span class="na">source_code_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.archive_file.lambda_hello.output_base64sha256</span>
+
+<span class="w">  </span><span class="na">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.arn</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_cloudwatch_log_group&quot;</span><span class="w"> </span><span class="nv">&quot;hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/lambda/${aws_lambda_function.hello.function_name}&quot;</span>
+
+<span class="w">  </span><span class="na">retention_in_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;archive_file&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;zip&quot;</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">source_dir</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../${path.module}/hello&quot;</span>
+<span class="err">+</span><span class="w">  </span><span class="na">output_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../${path.module}/hello.zip&quot;</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Nosso último componente visa obter o arquivo zip e carregar no bucket do S3.</p>
+<div class="tabbed-set" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><label for="__tabbed_10_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
+
+<span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
+<span class="sh">{</span>
+<span class="sh">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
+<span class="sh">  &quot;Statement&quot;: [</span>
+<span class="sh">    {</span>
+<span class="sh">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+<span class="sh">      &quot;Principal&quot;: {</span>
+<span class="sh">        &quot;Service&quot;: &quot;lambda.amazonaws.com&quot;</span>
+<span class="sh">      },</span>
+<span class="sh">      &quot;Action&quot;: &quot;sts:AssumeRole&quot;</span>
+<span class="sh">    }</span>
+<span class="sh">  ]</span>
+<span class="sh">}</span>
+<span class="dl">POLICY</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role_policy_attachment&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_policy&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.name</span>
+<span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_lambda_function&quot;</span><span class="w"> </span><span class="nv">&quot;hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">function_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span>
+
+<span class="w">  </span><span class="na">s3_bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.lambda_bucket.id</span>
+<span class="w">  </span><span class="na">s3_key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_object.lambda_hello.key</span>
+
+<span class="w">  </span><span class="na">runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nodejs16.x&quot;</span>
+<span class="w">  </span><span class="na">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;function.handler&quot;</span>
+
+<span class="w">  </span><span class="na">source_code_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.archive_file.lambda_hello.output_base64sha256</span>
+
+<span class="w">  </span><span class="na">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.arn</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_cloudwatch_log_group&quot;</span><span class="w"> </span><span class="nv">&quot;hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/lambda/${aws_lambda_function.hello.function_name}&quot;</span>
+
+<span class="w">  </span><span class="na">retention_in_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;archive_file&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;zip&quot;</span>
+
+<span class="w">  </span><span class="na">source_dir</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../${path.module}/hello&quot;</span>
+<span class="w">  </span><span class="na">output_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../${path.module}/hello.zip&quot;</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_object&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.lambda_bucket.id</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello.zip&quot;</span>
+<span class="err">+</span><span class="w">  </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.archive_file.lambda_hello.output_path</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">etag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">filemd5</span><span class="p">(</span><span class="nv">data.archive_file.lambda_hello.output_path</span><span class="p">)</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Com os passos feitos até aqui já conseguimos inicializar o terraform e aplicar suas alterações.</p>
+<div class="highlight"><pre><span></span><code><span class="err">terraform</span><span class="w"> </span><span class="err">init</span>
+<span class="err">terraform</span><span class="w"> </span><span class="err">apply</span>
+</code></pre></div>
+<p>Qando o terraform concluir suas etapas até aqui, podemos entrar no dashboard da AWS e encontrar um bucket S3 recém-criado com um nome definido por meio de um gerador de animais de estimação aleatório.</p>
+<p>Note que dentro do bucket são armazenadas funções lambdas dentro de um zip.</p>
+<p>Qaundo entramos na dashboard da AWS CloudWatch também conseguimos ver o grupo de logs criado.</p>
+<p>No dashboard do AWS Lambda conseguimos ver a função lambda empacotada como um zip.</p>
+<p>Como ainda não temos o API Gateway, conseguimos invocar a função com o comando aws lambda invoke.
+Lembre-se de especificar ou conferir se o nome da região, função e arquivo estão corretos pra registrar a resposta da função.</p>
+<div class="highlight"><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">lambda</span><span class="w"> </span><span class="err">invoke</span><span class="w"> </span><span class="na">--region</span><span class="o">=</span><span class="err">us-east-</span><span class="m">1</span><span class="w"> </span><span class="na">--function-name</span><span class="o">=</span><span class="err">hello</span><span class="w"> </span><span class="nv">response.json</span>
+</code></pre></div>
+<p>Ao printarmos a resposta, é esperado um retorno "Hello, World!"</p>
+<div class="highlight"><pre><span></span><code><span class="err">cat</span><span class="w"> </span><span class="nv">response.json</span>
+</code></pre></div>
+<p>A próxima estapa será criar o API Gateway e integrá-lo ao nosso lambda.</p>
+<p>Utilizaremos a versão 2 do API Gateway</p>
+<div class="tabbed-set" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><label for="__tabbed_11_1"><strong>terraform/api-gateway.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_api&quot;</span><span class="w"> </span><span class="nv">&quot;main&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;main&quot;</span>
+<span class="w">  </span><span class="na">protocol_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;HTTP&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_stage&quot;</span><span class="w"> </span><span class="nv">&quot;dev&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="w">  </span><span class="na">name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;dev&quot;</span>
+<span class="w">  </span><span class="na">auto_deploy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+
+<span class="w">  </span><span class="nb">access_log_settings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">destination_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_cloudwatch_log_group.main_api_gw.arn</span>
+
+<span class="w">    </span><span class="na">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsonencode</span><span class="p">({</span>
+<span class="w">      </span><span class="na">requestId</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.requestId&quot;</span>
+<span class="w">      </span><span class="na">sourceIp</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.identity.sourceIp&quot;</span>
+<span class="w">      </span><span class="na">requestTime</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.requestTime&quot;</span>
+<span class="w">      </span><span class="na">protocol</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.protocol&quot;</span>
+<span class="w">      </span><span class="na">httpMethod</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.httpMethod&quot;</span>
+<span class="w">      </span><span class="na">resourcePath</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.resourcePath&quot;</span>
+<span class="w">      </span><span class="na">routeKey</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.routeKey&quot;</span>
+<span class="w">      </span><span class="na">status</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.status&quot;</span>
+<span class="w">      </span><span class="na">responseLength</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.responseLength&quot;</span>
+<span class="w">      </span><span class="na">integrationErrorMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$context.integrationErrorMessage&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_cloudwatch_log_group&quot;</span><span class="w"> </span><span class="nv">&quot;main_api_gw&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/api-gw/${aws_apigatewayv2_api.main.name}&quot;</span>
+
+<span class="w">  </span><span class="na">retention_in_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>No próximo arquivo Terraform, integraremos o API Gateway com o hello lambda. Primeiramente apontaremos para o ID do API Gateway que acabamos de criar. Em seguida utilizaremos PROXYS AWS e solicitações POST para encaminhar solicitações do API Gateway para o Lambda</p>
+<div class="tabbed-set" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><label for="__tabbed_12_1"><strong>terraform/hello-api-gateway.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<p><div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="na">integration_uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.invoke_arn</span>
+<span class="na">integration_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AWS_PROXY&quot;</span>
+<span class="na">integration_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+Podemos especificar qual tipo de solicitações queremos passar para o lambda, por exemplo: GET ou POST, como abaixo:</p>
+<div class="tabbed-set" data-tabs="13:1"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><label for="__tabbed_13_1"><strong>terraform/hello-api-gateway.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="na">integration_uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.invoke_arn</span>
+<span class="na">integration_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AWS_PROXY&quot;</span>
+<span class="na">integration_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_route&quot;</span><span class="w"> </span><span class="nv">&quot;get_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="err">+</span><span class="na">route_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;GET /hello&quot;</span>
+<span class="err">+</span><span class="na">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;integrations/${aws_apigatewayv2_integration.lambda_hello.id}&quot;</span>
+<span class="err">+</span><span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_route&quot;</span><span class="w"> </span><span class="nv">&quot;post_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="err">+</span><span class="na">route_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST /hello&quot;</span>
+<span class="err">+</span><span class="na">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;integrations/${aws_apigatewayv2_integration.lambda_hello.id}&quot;</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Note que em ambos os exemplos é necessário especificar um destino para ser o nosso lambda.
+Também precisamos conceder permissões ao API Gateway para invocar nossa funçõ lambda:</p>
+<div class="tabbed-set" data-tabs="14:1"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><label for="__tabbed_14_1"><strong>terraform/hello-api-gateway.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="w">  </span><span class="na">integration_uri</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.invoke_arn</span>
+<span class="w">  </span><span class="na">integration_type</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AWS_PROXY&quot;</span>
+<span class="w">  </span><span class="na">integration_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_route&quot;</span><span class="w"> </span><span class="nv">&quot;get_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="w">  </span><span class="na">route_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;GET /hello&quot;</span>
+<span class="w">  </span><span class="na">target</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;integrations/${aws_apigatewayv2_integration.lambda_hello.id}&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_route&quot;</span><span class="w"> </span><span class="nv">&quot;post_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="w">  </span><span class="na">route_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST /hello&quot;</span>
+<span class="w">  </span><span class="na">target</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;integrations/${aws_apigatewayv2_integration.lambda_hello.id}&quot;</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_lambda_permission&quot;</span><span class="w"> </span><span class="nv">&quot;api_gw&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">statement_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AllowExecutionFromAPIGateway&quot;</span>
+<span class="err">+</span><span class="w">  </span><span class="na">action</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lambda:InvokeFunction&quot;</span>
+<span class="err">+</span><span class="w">  </span><span class="na">function_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.function_name</span>
+<span class="err">+</span><span class="w">  </span><span class="na">principal</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;apigateway.amazonaws.com&quot;</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">source_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${aws_apigatewayv2_api.main.execution_arn}/*/*&quot;</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Por fim, vamos imprimir no console o URL que podemos usar para invocar o lambda.</p>
+<div class="tabbed-set" data-tabs="15:1"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><label for="__tabbed_15_1"><strong>terraform/hello-api-gateway.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="w">  </span><span class="na">integration_uri</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.invoke_arn</span>
+<span class="w">  </span><span class="na">integration_type</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AWS_PROXY&quot;</span>
+<span class="w">  </span><span class="na">integration_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_route&quot;</span><span class="w"> </span><span class="nv">&quot;get_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="w">  </span><span class="na">route_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;GET /hello&quot;</span>
+<span class="w">  </span><span class="na">target</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;integrations/${aws_apigatewayv2_integration.lambda_hello.id}&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_route&quot;</span><span class="w"> </span><span class="nv">&quot;post_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
+
+<span class="w">  </span><span class="na">route_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST /hello&quot;</span>
+<span class="w">  </span><span class="na">target</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;integrations/${aws_apigatewayv2_integration.lambda_hello.id}&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_lambda_permission&quot;</span><span class="w"> </span><span class="nv">&quot;api_gw&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">statement_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AllowExecutionFromAPIGateway&quot;</span>
+<span class="w">  </span><span class="na">action</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lambda:InvokeFunction&quot;</span>
+<span class="w">  </span><span class="na">function_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.function_name</span>
+<span class="w">  </span><span class="na">principal</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;apigateway.amazonaws.com&quot;</span>
+
+<span class="w">  </span><span class="na">source_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${aws_apigatewayv2_api.main.execution_arn}/*/*&quot;</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;hello_base_url&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_stage.dev.invoke_url</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>No terminal, daremos um apply no teraform.</p>
+<div class="highlight"><pre><span></span><code><span class="err">terraform</span><span class="w"> </span><span class="err">apply</span>
+</code></pre></div>
+<p>Se entrarmos no dashboard do API Gateway, podemos ver nosso estágio de desenvolvimento "dev" criado e, em "rotas", conseguimos encontrar os métodos GET e POST.</p>
+<p>Vamos agora testar o método HTTP GET.
+A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"</p>
+<div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="s2">&quot;https://&lt;id&gt;.execute-api.us-east-1.amazonaws.com/dev/hello?Name=Anton&quot;</span>
+</code></pre></div>
+<p>Também testaremos o método POST. Nesse caso, fornecemos um payload como um objeto json para o terminal e veremos que funciona tmbém.</p>
+<div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span>\
+<span class="err">-H</span><span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>\
+<span class="err">-d</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Anton&quot;</span><span class="p">}</span><span class="err">&#39;</span><span class="w"> </span>\
+<span class="s2">&quot;https://&lt;id&gt;.execute-api.us-east-1.amazonaws.com/dev/hello&quot;</span>
+</code></pre></div>
+<p>Se entrarmos no dashboard do CloudWatch, conseguiremos ver os logs de acesso registrados para cada solicitação.</p>
+<!-- === "C"
+
+    <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">C++</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+=== "C++"
+
+    <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello world!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-</div>
-</div>
-<p>Inserir vídeo:</p>
-<ul>
-<li>Abra o youtube <img alt="➡️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/27a1.svg" title=":arrow_right:" /> clique com botão direito no vídeo <img alt="➡️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/27a1.svg" title=":arrow_right:" /> copia código de incorporação:</li>
-</ul>
+
+Inserir vídeo:
+
+- Abra o youtube :arrow_right: clique com botão direito no vídeo :arrow_right: copia código de incorporação:
+
 <iframe width="630" height="450" src="https://www.youtube.com/embed/UIGsSLCoIhM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Eu ajusto o tamanho do vídeo <code>width</code>/<code>height</code> para não ficar gigante na página</p>
-</div>
-<p>Imagens você insere como em plain markdown, mas tem a vantagem de poder mudar as dimensões com o marcador <code>{width=...}</code></p>
-<p><img alt="" src="icon-elementos.png" /></p>
-<p><img alt="" src="icon-elementos.png" width="200" /></p>
+!!! tip
+Eu ajusto o tamanho do vídeo `width`/`height` para não ficar gigante na página
+
+Imagens você insere como em plain markdown, mas tem a vantagem de poder mudar as dimensões com o marcador `{width=...}`
+
+![](icon-elementos.png)
+
+![](icon-elementos.png){width=200} -->
 
 
 
