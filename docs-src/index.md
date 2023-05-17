@@ -1,4 +1,4 @@
-# **AWS S3 SERVELESS APPLICATION** | ***COMPUTAÇÃO EM NUVEM - INSPER***
+# :cloud: **AWS SERVELESS APPLICATION S3, LAMBDA, API GATEWAY E CLOUDWATCH**
 
 <!-- - **Aluno:** Lister Ogusuku Ribeiro
 - **Curso:** Engenharia de Computação
@@ -16,10 +16,12 @@
 <td>
 <pre>
 Aluno: Lister Ogusuku Ribeiro
-Curso: Engenharia de Computação
-Semestre: 6º
 Contato: listeror@al.insper.edu.br
-Semestre: 2023.1
+Curso: Engenharia de Computação
+Disciplina: Computação em Nuvem
+Semestre: 6º (2023.1)
+Profº: Rodolfo Avelino
+Profº Auxiliar: Tiago Demay
 </pre>
 </td>
 <td>
@@ -38,7 +40,6 @@ Semestre: 2023.1
 </table>
 
 </div>
-
 
 <!--
 
@@ -561,11 +562,13 @@ Com os passos feitos até aqui já conseguimos inicializar o terraform e aplicar
 terraform init
 terraform apply
 ```
+
 > :warning: **Dica visual**
 
 > Quando o terraform concluir suas etapas até aqui, podemos entrar no dashboard da AWS e encontrar um bucket S3 recém-criado com um nome definido por meio de um gerador de animais de estimação aleatório.
 
 ---
+
 **Para abstrair:**
 
 Note que dentro do bucket são armazenadas funções lambdas dentro de um **zip.**
@@ -579,7 +582,6 @@ No dashboard do AWS Lambda conseguimos ver a função lambda empacotada como um 
 Como ainda não temos o API Gateway, conseguimos invocar a função com o comando aws lambda invoke.
 
 Lembre-se de especificar ou conferir se o nome da região, função e arquivo estão corretos pra registrar a resposta da função.
-
 
 ```tf
 aws lambda invoke --region=us-east-1 --function-name=hello response.json
@@ -772,6 +774,7 @@ No terminal, daremos um apply no teraform.
 ```tf
 terraform apply
 ```
+
 > :warning: **Dica visual**
 
 > _Se entrarmos no dashboard do **API Gateway**, podemos ver nosso estágio de desenvolvimento "dev" criado e, em "rotas", conseguimos encontrar os métodos ***GET e POST.***_
