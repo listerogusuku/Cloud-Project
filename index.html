@@ -242,15 +242,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-instalacao-do-terraform" class="md-nav__link">
-    1. Instalação do Terraform
+  <a href="#1-pre-requisitos" class="md-nav__link">
+    1. Pré-requisitos
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-utilizacao" class="md-nav__link">
-    2. Utilização
+  <a href="#2-instalacao-do-terraform" class="md-nav__link">
+    2. Instalação do Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-utilizacao" class="md-nav__link">
+    3. Utilização
   </a>
   
 </li>
@@ -334,6 +341,26 @@
   <a href="#hora-de-testar" class="md-nav__link">
     Hora de testar
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-funcao-lambda-com-dependencias-externas-e-acesso-ao-bucket-s3" class="md-nav__link">
+    Criando função lambda com dependências externas e acesso ao bucket S3
+  </a>
+  
+    <nav class="md-nav" aria-label="Criando função lambda com dependências externas e acesso ao bucket S3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -394,15 +421,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-instalacao-do-terraform" class="md-nav__link">
-    1. Instalação do Terraform
+  <a href="#1-pre-requisitos" class="md-nav__link">
+    1. Pré-requisitos
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-utilizacao" class="md-nav__link">
-    2. Utilização
+  <a href="#2-instalacao-do-terraform" class="md-nav__link">
+    2. Instalação do Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-utilizacao" class="md-nav__link">
+    3. Utilização
   </a>
   
 </li>
@@ -486,6 +520,26 @@
   <a href="#hora-de-testar" class="md-nav__link">
     Hora de testar
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-funcao-lambda-com-dependencias-externas-e-acesso-ao-bucket-s3" class="md-nav__link">
+    Criando função lambda com dependências externas e acesso ao bucket S3
+  </a>
+  
+    <nav class="md-nav" aria-label="Criando função lambda com dependências externas e acesso ao bucket S3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -573,18 +627,65 @@ Para seguir esse tutorial é necessário: -->
 <p>A computação em nuvem é um modelo de tecnologia de informação que permite o acesso sob demanda a um conjunto compartilhado de recursos de computação, como servidores, armazenamento, aplicativos e serviços, por meio da internet. Em outras palavras, a computação em nuvem é uma <strong><em>forma de disponibilizar recursos computacionais através da internet, em vez de ter todos os recursos armazenados localmente em um único computador ou servidor.</em></strong> Esses recursos são gerenciados e mantidos por provedores de serviços em nuvem, como a <strong><em>Amazon Web Services, Microsoft Azure e Google Cloud Platform.</em></strong></p>
 <p>A computação em nuvem pode ser utilizada para diversas finalidades, como <strong><em>armazenar arquivos e documentos, hospedar aplicativos, desenvolver e testar software, processar dados em larga escala, entre outras.</em></strong> A principal vantagem da computação em nuvem é que ela permite que as empresas e usuários finais utilizem recursos computacionais de forma flexível e escalável, sem precisar investir em infraestrutura de TI própria. Além disso, a computação em nuvem oferece maior disponibilidade e segurança de dados do que soluções locais, já que os provedores de serviços em nuvem costumam ter data centers redundantes e medidas de segurança avançadas para proteger os dados dos usuários.</p>
 </blockquote>
+<p><img alt="" src="https://pimages.toolbox.com/wp-content/uploads/2021/07/09134159/38-3.png" /></p>
 <h2 id="sobre-o-projeto"><img alt="📝" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f4dd.svg" title=":pencil:" /> Sobre o Projeto<a class="headerlink" href="#sobre-o-projeto" title="Permanent link">&para;</a></h2>
-<p>O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da AWS (Amazon Web Services). A ideia é subir uma aplicação sem servidor utilizando o <strong>S3, Lambda, API Gateway e o CloudWatch.</strong></p>
+<p>O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem <a href="https://aws.amazon.com/pt/what-is-aws/"><strong>AWS (Amazon Web Services).</strong></a> A ideia é subir uma aplicação sem servidor utilizando o <strong><a href="https://aws.amazon.com/pt/s3/">S3</a>, <a href="https://aws.amazon.com/pt/lambda/">Lambda</a>, <a href="https://aws.amazon.com/pt/api-gateway/">API Gateway</a> e o <a href="https://aws.amazon.com/pt/cloudwatch/">CloudWatch</a>.</strong> O diagrama visual da nossa aplicação pode ser conferido a seguir:</p>
 <h2 id="desenvolvendo-a-infraestrutura">Desenvolvendo a infraestrutura<a class="headerlink" href="#desenvolvendo-a-infraestrutura" title="Permanent link">&para;</a></h2>
-<h3 id="1-instalacao-do-terraform">1. Instalação do Terraform<a class="headerlink" href="#1-instalacao-do-terraform" title="Permanent link">&para;</a></h3>
+<h3 id="1-pre-requisitos">1. Pré-requisitos<a class="headerlink" href="#1-pre-requisitos" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Para rodar nossa infraestrutura, estamos utilizando o <strong>Ubuntu 22.04.2 LTS</strong> (o qual já estava instalado no nosso Windows) A infra pode funcionar em outras versões, porém <strong><em>não há garantia de funcionamento.</em></strong> Assim sendo, indicamos o uso da versão supracitada para testar nossa aplicação.</p>
+</li>
+<li>
+<p>Conta no <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-github-create-github-account.html"><strong>Github</strong></a> + <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">token de autorização</a> com permissão de criação e atualização de repositórios (caso você desejar subir e deixar o projeto registrado).</p>
+</li>
+<li>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04">Node.js instalado na máquina.</a> (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS).</p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/pt_br/lex/latest/dg/gs-account.html">Conta na AWS com usuário com permissões de Administrador.</a></p>
+</li>
+<li>
+<p>Terraform instalado na máquina (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS).</p>
+</li>
+</ul>
+<h3 id="2-instalacao-do-terraform">2. Instalação do Terraform<a class="headerlink" href="#2-instalacao-do-terraform" title="Permanent link">&para;</a></h3>
 <p><img alt="Terraform image" src="https://upload.wikimedia.org/wikipedia/commons/0/04/Terraform_Logo.svg" /></p>
-<p>A primeira etapa para desenvolvermos essa aplicação é instalar o Terraform na máquina. O Terraform é uma ferramenta de gerenciamento de infraestrutura como código (IaC) desenvolvida pela HashiCorp. Ele permite que os usuários definam, configurem e provisionem infraestruturas de forma automatizada e reprodutível, usando uma linguagem declarativa e uma sintaxe simples.
+<p>A primeira etapa para desenvolvermos essa aplicação é instalar o Terraform na máquina. O Terraform é uma <strong>ferramenta de gerenciamento de infraestrutura como código (IaC)</strong> desenvolvida pela HashiCorp. Ele permite que os usuários definam, configurem e provisionem infraestruturas de forma automatizada e reprodutível, usando uma linguagem declarativa e uma sintaxe simples.
 Com o Terraform, é possível criar e gerenciar recursos em diferentes provedores de nuvem, como AWS, Google Cloud, Azure e outros, bem como em plataformas de infraestrutura, como Kubernetes, Docker e OpenStack.
-Em resumo, o Terraform é uma ferramenta importante para automatizar e gerenciar infraestruturas de nuvem e outras plataformas de infraestrutura, tornando a gestão de infraestrutura escalável, segura e repetível.</p>
-<p>Caso você não possua o Terraform no seu computador, é necessário baixar e instalar de acordo com o tutorial presente <a href="https://www.youtube.com/watch?v=bSrV1Dr8py8">neste link</a>.</p>
-<h3 id="2-utilizacao">2. Utilização<a class="headerlink" href="#2-utilizacao" title="Permanent link">&para;</a></h3>
-<p>Após a instalação do Terraform na máquina, já é possível rodar a infraestrutura desenvolvida.</p>
+Em resumo, <strong>o Terraform é uma ferramenta importante para automatizar e gerenciar infraestruturas de nuvem e outras plataformas de infraestrutura, tornando a gestão de infraestrutura escalável, segura e repetível.</strong></p>
+<p>Caso você não possua o Terraform no seu computador, é necessário baixar e instalar de acordo com o tutorial presente <a href="https://www.youtube.com/watch?v=bSrV1Dr8py8">neste link (Windows)</a> ou diretamente <a href="https://developer.hashicorp.com/terraform/downloads">neste link (Ubuntu/Linux)</a>.</p>
+<h3 id="3-utilizacao">3. Utilização<a class="headerlink" href="#3-utilizacao" title="Permanent link">&para;</a></h3>
+<p>Após a instalação do Terraform na máquina, já é possível rodar a infraestrutura desenvolvida ou criar sua própria infraestrutura com base em tudo que está sendo apresentado aqui.</p>
 <p>O primeiro passo é clonar este repositório em uma pasta dentro do seu computador. <em>Caso não saiba como clonar um repositório na sua máquina local, acesse o tutorial presente <a href="https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository">neste link</a> ou faça o download do respositório e descompacte o arquivo .zip no local desejado.</em></p>
+<p>Caso você desejar criar a infraestrutura do zero, segui e sugiro a seguinte estrutura de pastas:</p>
+<div class="highlight"><pre><span></span><code>Cloud-Project
+│
+│
+└───hello
+│   |---function.js
+│
+└───s3
+|   │---function.js
+│    
+│───Terraform
+│   |---api-gateway.tf
+│   |
+│   |---hello-api-gateway.tf
+│   |
+│   |---hello-lamba.tf
+│   |
+│   |---lambda-s3-bucket.tf
+│   |
+│   |---provider.tf
+│   |
+│   |---s3-lambda.tf
+│   |
+│   |---test-bucket.tf
+│   |
+│   |---terraform.sh
+</code></pre></div>
+<p>Independentemente se você escolheu clonar o repositório com a infraestrutura original ou se tiver escolhido criar do zero, <strong>lembre-se que tudo deve ser feito dentro do prompt de comando do Ubuntu 22.04.2 LTS</strong> caso deseje chegar nos mesmos resultados apresentados aqui sem grandes riscos de problemas.</p>
 <hr />
 <!-- !!! info
 Essas duas partes são obrigatórias no tutorial:
@@ -595,7 +696,7 @@ Essas duas partes são obrigatórias no tutorial:
 
 <h2 id="criando-uma-funcao-lambda-no-terraform">Criando uma função Lambda no Terraform<a class="headerlink" href="#criando-uma-funcao-lambda-no-terraform" title="Permanent link">&para;</a></h2>
 <p>O primeiro passo será criarmos uma função lambda que, futuramente, será integrada com o AWS API Gateway.
-Inicialmente, começaremos com uma função simples sem nenhuma dependência.</p>
+Inicialmente, começaremos com uma função simples baseada em <strong>NodeJS</strong> sem nenhuma dependência.</p>
 <!--
 !!! note
 Bloco de destaque de texto, pode ser:
@@ -652,20 +753,20 @@ Usar emojis da lista:
 <span class="w">    </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">queryStringParameters</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">httpMethod</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="o">+</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">httpMethod</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="o">+</span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="o">+</span><span class="w">    </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">;</span>
+<span class="o">+</span><span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">statusCode</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">responseMessage</span><span class="p">,</span>
-<span class="w">    </span><span class="p">}),</span>
-<span class="w">  </span><span class="p">};</span>
+<span class="o">+</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="o">+</span><span class="w">    </span><span class="nx">statusCode</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="o">+</span><span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="o">+</span><span class="w">      </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+<span class="o">+</span><span class="w">    </span><span class="p">},</span>
+<span class="o">+</span><span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="o">+</span><span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">responseMessage</span><span class="p">,</span>
+<span class="o">+</span><span class="w">    </span><span class="p">}),</span>
+<span class="o">+</span><span class="w">  </span><span class="p">};</span>
 
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
 <span class="p">};</span>
@@ -675,7 +776,8 @@ tipo de conteúdo e a mensagem</strong> para ser retornada ao chamador.</p>
 <h2 id="criando-o-provider">Criando o provider<a class="headerlink" href="#criando-o-provider" title="Permanent link">&para;</a></h2>
 <p>Agora que nossa handler já está pronta, começaremos a trabalhar em alguns elementos do nosso Terraform.
 Criaremos os arquivos <strong><em>.tf</em></strong> dentro de uma pasta intitulada (por motivos intuitivos, claro) como "terraform".</p>
-<p>Começaremos criando o arquivo "provider.tf", em que serão declaradas as restrições de versão para os diferentes provedores AWS e afins.</p>
+<p>Começaremos criando o arquivo "provider.tf", em que serão declaradas as restrições de versão (região da AWS, por exemplo) para os diferentes provedores AWS, versões de Teraform e afins.</p>
+<p>Isso é feito apenas para que, caso alguém pegue esse projeto no futuro e rode em outra versão de Terraform ou com configurações diferentes das que foram aqui padronizadas, o projeto não funcione.</p>
 <div class="tabbed-set" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1"><strong>terraform/provider.tf</strong></label><div class="tabbed-content"></div>
 </div>
 <div class="highlight"><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
@@ -683,22 +785,16 @@ Criaremos os arquivos <strong><em>.tf</em></strong> dentro de uma pasta intitula
 <span class="w">    </span><span class="nb">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hashicorp/aws&quot;</span>
 <span class="w">        </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 4.21.0&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="c1">    //random = {</span>
-<span class="c1">    //    source = &quot;hashicorp/random&quot;</span>
-<span class="c1">    //    version = &quot;~&gt; 3.3.0&quot;</span>
-<span class="c1">    //    }</span>
-<span class="c1">    //archive = {</span>
-<span class="c1">    //    source = &quot;hashicorp/archive&quot;</span>
-<span class="c1">    //    version = &quot;~&gt; 2.2.0&quot;</span>
-<span class="c1">    //    }</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="c1">    # Aqui dentro poderíamos também ter estabelecido outras restrições</span>
+<span class="c1">    # de versão, mas optei por deixar o mais simples possível.</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="na">required_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 1.0&quot;</span>
 <span class="p">}</span>
 
 <span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
+<span class="w">    </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span><span class="c1"> # Região Northern Virginia</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="bucket-do-s3">Bucket do S3<a class="headerlink" href="#bucket-do-s3" title="Permanent link">&para;</a></h2>
@@ -726,7 +822,7 @@ nos ajudar a nomear nosso bucket S3.</p>
 <span class="err">+</span><span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <span class="err">+</span><span class="p">}</span>
 </code></pre></div>
-<p>Por padrão, deixaremos todo o acesso público bloqueado.</p>
+<p>Por padrão, deixaremos todo o acesso público ao bucket bloqueado.</p>
 <div class="tabbed-set" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1"><strong>terraform/lambda-bucket.tf</strong></label><div class="tabbed-content"></div>
 </div>
 <div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
@@ -1004,7 +1100,7 @@ desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de
 <p>Quando entramos na dashboard da <strong>AWS CloudWatch</strong> também conseguimos ver o grupo de logs criado.</p>
 <p>No dashboard do AWS Lambda conseguimos ver a função lambda empacotada como um zip.</p>
 <hr />
-<p>Como ainda não temos o API Gateway, conseguimos invocar a função com o comando aws lambda invoke.</p>
+<p>Como ainda não temos o API Gateway, conseguimos invocar a função com o comando <strong><em>aws lambda invoke</em></strong>.</p>
 <p>Lembre-se de especificar ou conferir se o nome da região, função e arquivo estão corretos pra registrar a resposta da função.</p>
 <div class="highlight"><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">lambda</span><span class="w"> </span><span class="err">invoke</span><span class="w"> </span><span class="na">--region</span><span class="o">=</span><span class="err">us-east-</span><span class="m">1</span><span class="w"> </span><span class="na">--function-name</span><span class="o">=</span><span class="err">hello</span><span class="w"> </span><span class="nv">response.json</span>
 </code></pre></div>
@@ -1173,17 +1269,256 @@ Também precisamos conceder permissões ao API Gateway para invocar nossa funç�
 <h2 id="hora-de-testar">Hora de testar<a class="headerlink" href="#hora-de-testar" title="Permanent link">&para;</a></h2>
 <p>Vamos agora testar o método HTTP GET.
 A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"</p>
-<div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="s2">&quot;https://&lt;id&gt;.execute-api.us-east-1.amazonaws.com/dev/hello?Name=Anton&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="s2">&quot;https://&lt;id&gt;.execute-api.us-east-1.amazonaws.com/dev/hello?Name=InsperUniversity&quot;</span>
+<span class="w">               </span><span class="err">/</span>\
+<span class="w">               </span><span class="err">||</span>
+<span class="w">    </span><span class="err">Substitua</span><span class="w"> </span><span class="err">&lt;id&gt;</span><span class="w"> </span><span class="err">pelo</span><span class="w"> </span><span class="err">seu</span><span class="w"> </span><span class="err">id</span>
 </code></pre></div>
-<p>Também testaremos o método POST. Nesse caso, fornecemos um payload como um objeto json para o terminal e veremos que funciona tmbém.</p>
+<p>Também testaremos o método POST. Nesse caso, fornecemos um payload como um objeto json para o terminal e veremos que funciona também.</p>
 <div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span>\
 <span class="err">-H</span><span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>\
-<span class="err">-d</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Anton&quot;</span><span class="p">}</span><span class="err">&#39;</span><span class="w"> </span>\
+<span class="err">-d</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Insper&quot;</span><span class="p">}</span><span class="err">&#39;</span><span class="w"> </span>\
 <span class="s2">&quot;https://&lt;id&gt;.execute-api.us-east-1.amazonaws.com/dev/hello&quot;</span>
+<span class="w">          </span><span class="err">/</span>\
+<span class="w">          </span><span class="err">||</span>
+<span class="err">Substitua</span><span class="w"> </span><span class="err">&lt;id&gt;</span><span class="w"> </span><span class="err">pelo</span><span class="w"> </span><span class="err">seu</span><span class="w"> </span><span class="err">id</span>
 </code></pre></div>
 <blockquote>
 <p><em>Se entrarmos no dashboard do <strong>CloudWatch</strong>, conseguiremos ver os logs de acesso registrados para cada solicitação.</em></p>
 </blockquote>
+<h2 id="criando-funcao-lambda-com-dependencias-externas-e-acesso-ao-bucket-s3">Criando função lambda com dependências externas e acesso ao bucket S3<a class="headerlink" href="#criando-funcao-lambda-com-dependencias-externas-e-acesso-ao-bucket-s3" title="Permanent link">&para;</a></h2>
+<p>Vamos agora criar outra função lambda com dependências externas e que garanta acesso para a leitura de um arquivo em um bucket S3.</p>
+<p>Novamente, utilizaremos o random pet para nos auxiliar com um nome aleatório e único para nosso bucket do S3 e dicionaremos o prefixo "test" (o que também auxilia na identificação do bucket).</p>
+<p>Para esse bucket também deixaremos o acesso público desativado.</p>
+<div class="tabbed-set" data-tabs="17:1"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><label for="__tabbed_17_1"><strong>terraform/test-bucket.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;test_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span>
+<span class="w">  </span><span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;test&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">random_pet.test_bucket_name.id</span>
+<span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket_public_access_block&quot;</span><span class="w"> </span><span class="nv">&quot;test&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.test.id</span>
+
+<span class="w">  </span><span class="na">block_public_acls</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">block_public_policy</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">ignore_public_acls</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">restrict_public_buckets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Nós também podemos criar um objeto no S3 bucket utilizando terraform e o jsoncode build-in. Isso irá converter para um objeto json válido.</p>
+<div class="tabbed-set" data-tabs="18:1"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><label for="__tabbed_18_1"><strong>terraform/test-bucket.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;test_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span>
+<span class="w">  </span><span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;test&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">random_pet.test_bucket_name.id</span>
+<span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket_public_access_block&quot;</span><span class="w"> </span><span class="nv">&quot;test&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.test.id</span>
+
+<span class="w">  </span><span class="na">block_public_acls</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">block_public_policy</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">ignore_public_acls</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">restrict_public_buckets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="p">}</span>
+
+<span class="err">+</span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_object&quot;</span><span class="w"> </span><span class="nv">&quot;test&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.test.id</span>
+
+<span class="err">+</span><span class="w">  </span><span class="na">key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello.json&quot;</span>
+<span class="err">+</span><span class="w">  </span><span class="na">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsonencode</span><span class="p">({</span><span class="w"> </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;S3&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="err">+</span><span class="p">}</span>
+
+<span class="err">+</span><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;test_s3_bucket&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="err">+</span><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">random_pet.test_bucket_name.id</span>
+<span class="err">+</span><span class="p">}</span>
+</code></pre></div>
+<p>Agora iremos criar uma nova função lambda em uma nova pasta s3.</p>
+<p>Começaremos importando o aws-sdk e inicializando o objeto javascript.</p>
+<p>Essa função irá nos retornar o conteúdo do objeto.</p>
+<div class="tabbed-set" data-tabs="19:1"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><label for="__tabbed_19_1"><strong>s3/function.js</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;aws-sdk&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">aws</span><span class="p">.</span><span class="nx">S3</span><span class="p">({</span><span class="w"> </span><span class="nx">apiVersion</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;2006-03-01&#39;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Received event:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">bucket</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">object</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">object</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\+/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">));</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">Bucket</span><span class="o">:</span><span class="w"> </span><span class="nx">bucket</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">Key</span><span class="o">:</span><span class="w"> </span><span class="nx">key</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Body</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">s3</span><span class="p">.</span><span class="nx">getObject</span><span class="p">(</span><span class="nx">params</span><span class="p">).</span><span class="nx">promise</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Body</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; Yeah, I am working, Avelinux :) !!&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Error getting object </span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb"> from bucket </span><span class="si">${</span><span class="nx">bucket</span><span class="si">}</span><span class="sb">.`</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Dentro do diretório da recém-criada pasta "s3", devemos inicializar o projeto nodejs co o seguinte comando:</p>
+<div class="tabbed-set" data-tabs="20:1"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><label for="__tabbed_20_1"><strong>/s3</strong></label><div class="tabbed-content"></div>
+</div>
+<p><div class="highlight"><pre><span></span><code><span class="err">npm</span><span class="w"> </span><span class="err">init</span>
+</code></pre></div>
+Esse comando irá gerar arquivos package.json com dependências.
+Não há necessidade de preencher as informações solicitadas, basta teclar "enter" para cada info solicitada.</p>
+<p>Em seguida, iremos instalar o módulo aws-sdk:</p>
+<div class="tabbed-set" data-tabs="21:1"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><label for="__tabbed_21_1"><strong>/s3</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="err">npm</span><span class="w"> </span><span class="err">install</span><span class="w"> </span><span class="err">aws-sdk</span>
+</code></pre></div>
+<p>Agora retornaremos à pasta "Terraform" e iremos criar nossas políticas de acesso.</p>
+<div class="tabbed-set" data-tabs="22:1"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><label for="__tabbed_22_1"><strong>terraform/s3-lambda.tf</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;s3_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;s3-lambda&quot;</span>
+
+<span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
+<span class="sh">{</span>
+<span class="sh">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
+<span class="sh">  &quot;Statement&quot;: [</span>
+<span class="sh">    {</span>
+<span class="sh">      &quot;Effect&quot;: &quot;Allow&quot;,</span>
+<span class="sh">      &quot;Principal&quot;: {</span>
+<span class="sh">        &quot;Service&quot;: &quot;lambda.amazonaws.com&quot;</span>
+<span class="sh">      },</span>
+<span class="sh">      &quot;Action&quot;: &quot;sts:AssumeRole&quot;</span>
+<span class="sh">    }</span>
+<span class="sh">  ]</span>
+<span class="sh">}</span>
+<span class="dl">POLICY</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role_policy_attachment&quot;</span><span class="w"> </span><span class="nv">&quot;s3_lambda_policy&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.s3_lambda_exec.name</span>
+<span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_policy&quot;</span><span class="w"> </span><span class="nv">&quot;test_s3_bucket_access&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;TestS3BucketAccess&quot;</span>
+
+<span class="w">  </span><span class="na">policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsonencode</span><span class="p">({</span>
+<span class="w">    </span><span class="na">Version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span>
+<span class="w">    </span><span class="na">Statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="na">Action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span><span class="c1"> #Permitir obter um objeto do bucket</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">        </span><span class="na">Effect</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span>
+<span class="w">        </span><span class="na">Resource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:s3:::${aws_s3_bucket.test.id}/*&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># Política para acessar o novo bucket do s3:</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role_policy_attachment&quot;</span><span class="w"> </span><span class="nv">&quot;s3_lambda_test_s3_bucket_access&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.s3_lambda_exec.name</span>
+<span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_policy.test_s3_bucket_access.arn</span>
+<span class="p">}</span>
+
+<span class="c1"># Aqui teremos apoio na extração do aquivo zip da função</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_lambda_function&quot;</span><span class="w"> </span><span class="nv">&quot;s3&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">function_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;s3&quot;</span>
+
+<span class="w">  </span><span class="na">s3_bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.lambda_bucket.id</span>
+<span class="w">  </span><span class="na">s3_key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_object.lambda_s3.key</span>
+
+<span class="w">  </span><span class="na">runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nodejs16.x&quot;</span>
+<span class="w">  </span><span class="na">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;function.handler&quot;</span>
+
+<span class="w">  </span><span class="na">source_code_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.archive_file.lambda_s3.output_base64sha256</span>
+
+<span class="w">  </span><span class="na">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.s3_lambda_exec.arn</span>
+<span class="p">}</span>
+
+<span class="c1"># Novo grupo de logs do CloudWatch para a função:</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_cloudwatch_log_group&quot;</span><span class="w"> </span><span class="nv">&quot;s3&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/aws/lambda/${aws_lambda_function.s3.function_name}&quot;</span>
+
+<span class="w">  </span><span class="na">retention_in_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span>
+<span class="p">}</span>
+
+
+<span class="c1"># &quot;Compacte a função e carregue o zip para o bucket s3:&quot;</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;archive_file&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_s3&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;zip&quot;</span>
+
+<span class="w">  </span><span class="na">source_dir</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../${path.module}/s3&quot;</span>
+<span class="w">  </span><span class="na">output_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../${path.module}/s3.zip&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_object&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_s3&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.lambda_bucket.id</span>
+
+<span class="w">  </span><span class="na">key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;s3.zip&quot;</span>
+<span class="w">  </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.archive_file.lambda_s3.output_path</span>
+
+<span class="w">  </span><span class="na">source_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">filemd5</span><span class="p">(</span><span class="nv">data.archive_file.lambda_s3.output_path</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Para deployar na sua máquina local, é necessário criar um simples script wrapper no Terraform:</p>
+<div class="tabbed-set" data-tabs="23:1"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><label for="__tabbed_23_1"><strong>terraform/terraform.sh</strong></label><div class="tabbed-content"></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+
+<span class="nb">set</span><span class="w"> </span>-e
+
+<span class="nb">cd</span><span class="w"> </span>../s3
+npm<span class="w"> </span>ci
+
+<span class="nb">cd</span><span class="w"> </span>../terraform
+terraform<span class="w"> </span>apply
+</code></pre></div>
+<p>(No terminal, diretório <strong>/terraform</strong>) Vamos fazer o script se tornar executável:</p>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>terraform.sh
+</code></pre></div>
+<p>Em seguida podemos rodar:</p>
+<div class="highlight"><pre><span></span><code>./terraform.sh
+</code></pre></div>
+<p>Note que, ao rodarmos o comando acima, ele automaticamente rodará nosso terraform.sh que possui um "terraform apply", aplicando imediatamente as alterações que fizemos.</p>
+<p>No terminal receberemos de volta o nome do nosso recém-criado bucket do s3. Podemos invocar essa função s3 com o nome do bucket + nosso objeto para ver se o lambda conseguirá obter o objeto do bucket.</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>invoke<span class="w"> </span><span class="se">\</span>
+--region<span class="o">=</span>us-east-1<span class="w"> </span><span class="se">\</span>
+--function-name<span class="o">=</span>s3<span class="w"> </span><span class="se">\</span>
+--cli-binary-format<span class="w"> </span>raw-in-base64-out<span class="w"> </span><span class="se">\</span>
+--payload<span class="w"> </span><span class="s1">&#39;{&quot;bucket&quot;:&quot;test-&lt;your&gt;-&lt;name&gt;&quot;,&quot;object&quot;:&quot;hello.json&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+response.json
+<span class="w">                             </span>/<span class="se">\</span>
+<span class="w">                             </span><span class="o">||</span>
+<span class="w">      </span>Substitua<span class="w"> </span>test-&lt;your&gt;-&lt;name&gt;<span class="w"> </span>pelo<span class="w"> </span>nome<span class="w"> </span><span class="k">do</span><span class="w"> </span>seu<span class="w"> </span>bucket
+</code></pre></div>
+<p>Por fim, rode no terminal o seguinte comando:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>responde.json
+</code></pre></div>
+<p>Se você receber como retorno <strong><em>Yeah, I am working, Avelinux :) !!</em></strong>, parabéns, você concluiu sua aplicação e ela está funcionando!</p>
+<h3 id="referencias">Referências:<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h3>
+<p>Foram utilizadas dezenas de referências à construção do conhecimento aplicado aqui. Todo o conteúdo utilizado para a construção do aprendizado pode ser conferido abaixo:</p>
 <!-- === "C"
 
     <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
