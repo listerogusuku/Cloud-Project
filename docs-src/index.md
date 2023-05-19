@@ -69,27 +69,76 @@ Para seguir esse tutorial é necessário: -->
 >
 > A computação em nuvem pode ser utilizada para diversas finalidades, como **_armazenar arquivos e documentos, hospedar aplicativos, desenvolver e testar software, processar dados em larga escala, entre outras._** A principal vantagem da computação em nuvem é que ela permite que as empresas e usuários finais utilizem recursos computacionais de forma flexível e escalável, sem precisar investir em infraestrutura de TI própria. Além disso, a computação em nuvem oferece maior disponibilidade e segurança de dados do que soluções locais, já que os provedores de serviços em nuvem costumam ter data centers redundantes e medidas de segurança avançadas para proteger os dados dos usuários.
 
+![](https://pimages.toolbox.com/wp-content/uploads/2021/07/09134159/38-3.png)
+
 ## :pencil: Sobre o Projeto
 
-O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da AWS (Amazon Web Services). A ideia é subir uma aplicação sem servidor utilizando o **S3, Lambda, API Gateway e o CloudWatch.**
+O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem [**AWS (Amazon Web Services).**](https://aws.amazon.com/pt/what-is-aws/) A ideia é subir uma aplicação sem servidor utilizando o **[S3](https://aws.amazon.com/pt/s3/), [Lambda](https://aws.amazon.com/pt/lambda/), [API Gateway](https://aws.amazon.com/pt/api-gateway/) e o [CloudWatch](https://aws.amazon.com/pt/cloudwatch/).** O diagrama visual da nossa aplicação pode ser conferido a seguir:
+
 
 ## Desenvolvendo a infraestrutura
 
-### 1. Instalação do Terraform
+### 1. Pré-requisitos
+
+- Para rodar nossa infraestrutura, estamos utilizando o **Ubuntu 22.04.2 LTS** (o qual já estava instalado no nosso Windows) A infra pode funcionar em outras versões, porém ***não há garantia de funcionamento.*** Assim sendo, indicamos o uso da versão supracitada para testar nossa aplicação.
+
+- Conta no [**Github**](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-github-create-github-account.html) + [token de autorização](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) com permissão de criação e atualização de repositórios (caso você desejar subir e deixar o projeto registrado).
+
+- [Node.js instalado na máquina.](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04) (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS).
+
+- [Conta na AWS com usuário com permissões de Administrador.](https://docs.aws.amazon.com/pt_br/lex/latest/dg/gs-account.html)
+
+- Terraform instalado na máquina (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS).
+
+### 2. Instalação do Terraform
 
 ![Terraform image](https://upload.wikimedia.org/wikipedia/commons/0/04/Terraform_Logo.svg)
 
-A primeira etapa para desenvolvermos essa aplicação é instalar o Terraform na máquina. O Terraform é uma ferramenta de gerenciamento de infraestrutura como código (IaC) desenvolvida pela HashiCorp. Ele permite que os usuários definam, configurem e provisionem infraestruturas de forma automatizada e reprodutível, usando uma linguagem declarativa e uma sintaxe simples.
+A primeira etapa para desenvolvermos essa aplicação é instalar o Terraform na máquina. O Terraform é uma **ferramenta de gerenciamento de infraestrutura como código (IaC)** desenvolvida pela HashiCorp. Ele permite que os usuários definam, configurem e provisionem infraestruturas de forma automatizada e reprodutível, usando uma linguagem declarativa e uma sintaxe simples.
 Com o Terraform, é possível criar e gerenciar recursos em diferentes provedores de nuvem, como AWS, Google Cloud, Azure e outros, bem como em plataformas de infraestrutura, como Kubernetes, Docker e OpenStack.
-Em resumo, o Terraform é uma ferramenta importante para automatizar e gerenciar infraestruturas de nuvem e outras plataformas de infraestrutura, tornando a gestão de infraestrutura escalável, segura e repetível.
+Em resumo, **o Terraform é uma ferramenta importante para automatizar e gerenciar infraestruturas de nuvem e outras plataformas de infraestrutura, tornando a gestão de infraestrutura escalável, segura e repetível.**
 
-Caso você não possua o Terraform no seu computador, é necessário baixar e instalar de acordo com o tutorial presente [neste link](https://www.youtube.com/watch?v=bSrV1Dr8py8).
+Caso você não possua o Terraform no seu computador, é necessário baixar e instalar de acordo com o tutorial presente [neste link (Windows)](https://www.youtube.com/watch?v=bSrV1Dr8py8) ou diretamente [neste link (Ubuntu/Linux)](https://developer.hashicorp.com/terraform/downloads).
 
-### 2. Utilização
+### 3. Utilização
 
-Após a instalação do Terraform na máquina, já é possível rodar a infraestrutura desenvolvida.
+Após a instalação do Terraform na máquina, já é possível rodar a infraestrutura desenvolvida ou criar sua própria infraestrutura com base em tudo que está sendo apresentado aqui.
 
 O primeiro passo é clonar este repositório em uma pasta dentro do seu computador. _Caso não saiba como clonar um repositório na sua máquina local, acesse o tutorial presente [neste link](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) ou faça o download do respositório e descompacte o arquivo .zip no local desejado._
+
+Caso você desejar criar a infraestrutura do zero, segui e sugiro a seguinte estrutura de pastas:
+
+```
+Cloud-Project
+│
+│
+└───hello
+│   |---function.js
+│
+└───s3
+|   │---function.js
+│    
+│───Terraform
+│   |---api-gateway.tf
+│   |
+│   |---hello-api-gateway.tf
+│   |
+│   |---hello-lamba.tf
+│   |
+│   |---lambda-s3-bucket.tf
+│   |
+│   |---provider.tf
+│   |
+│   |---s3-lambda.tf
+│   |
+│   |---test-bucket.tf
+│   |
+│   |---terraform.sh
+
+
+```
+
+Independentemente se você escolheu clonar o repositório com a infraestrutura original ou se tiver escolhido criar do zero, **lembre-se que tudo deve ser feito dentro do prompt de comando do Ubuntu 22.04.2 LTS** caso deseje chegar nos mesmos resultados apresentados aqui sem grandes riscos de problemas.
 
 ---
 
@@ -103,7 +152,7 @@ Essas duas partes são obrigatórias no tutorial:
 ## Criando uma função Lambda no Terraform
 
 O primeiro passo será criarmos uma função lambda que, futuramente, será integrada com o AWS API Gateway.
-Inicialmente, começaremos com uma função simples sem nenhuma dependência.
+Inicialmente, começaremos com uma função simples baseada em **NodeJS** sem nenhuma dependência.
 
 <!--
 !!! note
@@ -166,20 +215,20 @@ exports.handler = async (event) => {
     responseMessage = "Hello, " + event.queryStringParameters["Name"] + "!";
   }
 
-  if (event.httpMethod === "POST") {
-    const body = JSON.parse(event.body);
-    responseMessage = "Hello, " + body.name + "!";
-  }
++  if (event.httpMethod === "POST") {
++    const body = JSON.parse(event.body);
++    responseMessage = "Hello, " + body.name + "!";
++  }
 
-  const response = {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      message: responseMessage,
-    }),
-  };
++  const response = {
++    statusCode: 200,
++    headers: {
++      "Content-Type": "application/json",
++    },
++    body: JSON.stringify({
++      message: responseMessage,
++    }),
++  };
 
   return response;
 };
@@ -193,7 +242,9 @@ tipo de conteúdo e a mensagem** para ser retornada ao chamador.
 Agora que nossa handler já está pronta, começaremos a trabalhar em alguns elementos do nosso Terraform.
 Criaremos os arquivos **_.tf_** dentro de uma pasta intitulada (por motivos intuitivos, claro) como "terraform".
 
-Começaremos criando o arquivo "provider.tf", em que serão declaradas as restrições de versão para os diferentes provedores AWS e afins.
+Começaremos criando o arquivo "provider.tf", em que serão declaradas as restrições de versão (região da AWS, por exemplo) para os diferentes provedores AWS, versões de Teraform e afins.
+
+Isso é feito apenas para que, caso alguém pegue esse projeto no futuro e rode em outra versão de Terraform ou com configurações diferentes das que foram aqui padronizadas, o projeto não funcione.
 
 === "**terraform/provider.tf**"
 
@@ -203,22 +254,16 @@ terraform {
     aws = {
         source = "hashicorp/aws"
         version = "~> 4.21.0"
-    }
-    //random = {
-    //    source = "hashicorp/random"
-    //    version = "~> 3.3.0"
-    //    }
-    //archive = {
-    //    source = "hashicorp/archive"
-    //    version = "~> 2.2.0"
-    //    }
+        }
+    # Aqui dentro poderíamos também ter estabelecido outras restrições
+    # de versão, mas optei por deixar o mais simples possível.
     }
 
 required_version = "~> 1.0"
 }
 
 provider "aws" {
-    region = "us-east-1"
+    region = "us-east-1" # Região Northern Virginia
 }
 ```
 
@@ -259,7 +304,7 @@ resource "random_pet" "lambda_bucket_name" {
 
 ```
 
-Por padrão, deixaremos todo o acesso público bloqueado.
+Por padrão, deixaremos todo o acesso público ao bucket bloqueado.
 
 === "**terraform/lambda-bucket.tf**"
 
@@ -579,7 +624,7 @@ No dashboard do AWS Lambda conseguimos ver a função lambda empacotada como um 
 
 ---
 
-Como ainda não temos o API Gateway, conseguimos invocar a função com o comando aws lambda invoke.
+Como ainda não temos o API Gateway, conseguimos invocar a função com o comando ***aws lambda invoke***.
 
 Lembre-se de especificar ou conferir se o nome da região, função e arquivo estão corretos pra registrar a resposta da função.
 
@@ -785,20 +830,312 @@ Vamos agora testar o método HTTP GET.
 A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"
 
 ```tf
-curl "https://<id>.execute-api.us-east-1.amazonaws.com/dev/hello?Name=Anton"
+curl "https://<id>.execute-api.us-east-1.amazonaws.com/dev/hello?Name=InsperUniversity"
+               /\
+               ||
+    Substitua <id> pelo seu id
 ```
 
-Também testaremos o método POST. Nesse caso, fornecemos um payload como um objeto json para o terminal e veremos que funciona tmbém.
+Também testaremos o método POST. Nesse caso, fornecemos um payload como um objeto json para o terminal e veremos que funciona também.
 
 ```tf
 curl -X POST \
 -H "Content-Type: application/json" \
--d '{"name":"Anton"}' \
+-d '{"name":"Insper"}' \
 "https://<id>.execute-api.us-east-1.amazonaws.com/dev/hello"
+          /\
+          ||
+Substitua <id> pelo seu id
 
 ```
 
 > _Se entrarmos no dashboard do **CloudWatch**, conseguiremos ver os logs de acesso registrados para cada solicitação._
+
+
+## Criando função lambda com dependências externas e acesso ao bucket S3
+
+Vamos agora criar outra função lambda com dependências externas e que garanta acesso para a leitura de um arquivo em um bucket S3.
+
+Novamente, utilizaremos o random pet para nos auxiliar com um nome aleatório e único para nosso bucket do S3 e dicionaremos o prefixo "test" (o que também auxilia na identificação do bucket).
+
+Para esse bucket também deixaremos o acesso público desativado.
+
+=== "**terraform/test-bucket.tf**"
+
+```tf
+resource "random_pet" "test_bucket_name" {
+  prefix = "test"
+  length = 2
+}
+
+resource "aws_s3_bucket" "test" {
+  bucket        = random_pet.test_bucket_name.id
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_public_access_block" "test" {
+  bucket = aws_s3_bucket.test.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+```
+
+Nós também podemos criar um objeto no S3 bucket utilizando terraform e o jsoncode build-in. Isso irá converter para um objeto json válido.
+
+=== "**terraform/test-bucket.tf**"
+
+```tf
+resource "random_pet" "test_bucket_name" {
+  prefix = "test"
+  length = 2
+}
+
+resource "aws_s3_bucket" "test" {
+  bucket        = random_pet.test_bucket_name.id
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_public_access_block" "test" {
+  bucket = aws_s3_bucket.test.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
++resource "aws_s3_object" "test" {
++  bucket = aws_s3_bucket.test.id
+
++  key     = "hello.json"
++  content = jsonencode({ name = "S3" })
++}
+
++output "test_s3_bucket" {
++  value = random_pet.test_bucket_name.id
++}
+
+```
+
+Agora iremos criar uma nova função lambda em uma nova pasta s3.
+
+Começaremos importando o aws-sdk e inicializando o objeto javascript.
+
+Essa função irá nos retornar o conteúdo do objeto.
+
+=== "**s3/function.js**"
+
+```js
+const aws = require('aws-sdk');
+
+const s3 = new aws.S3({ apiVersion: '2006-03-01' });
+
+exports.handler = async (event, context) => {
+    console.log('Received event:', JSON.stringify(event, null, 2));
+
+    const bucket = event.bucket;
+    const object = event.object;
+    const key = decodeURIComponent(object.replace(/\+/g, ' '));
+
+    const params = {
+        Bucket: bucket,
+        Key: key,
+    };
+    try {
+        const { Body } = await s3.getObject(params).promise();
+        const content = Body.toString('utf-8');
+        return content + ' Yeah, I am working, Avelinux :) !!';
+    } catch (err) {
+        console.log(err);
+        const message = `Error getting object ${key} from bucket ${bucket}.`;
+        console.log(message);
+        throw new Error(message);
+    }
+};
+
+```
+
+Dentro do diretório da recém-criada pasta "s3", devemos inicializar o projeto nodejs co o seguinte comando:
+
+=== "**/s3**"
+```tf
+npm init
+```
+Esse comando irá gerar arquivos package.json com dependências.
+Não há necessidade de preencher as informações solicitadas, basta teclar "enter" para cada info solicitada.
+
+Em seguida, iremos instalar o módulo aws-sdk:
+
+=== "**/s3**"
+```tf
+npm install aws-sdk
+```
+
+Agora retornaremos à pasta "Terraform" e iremos criar nossas políticas de acesso.
+
+
+=== "**terraform/s3-lambda.tf**"
+```tf
+resource "aws_iam_role" "s3_lambda_exec" {
+  name = "s3-lambda"
+
+  assume_role_policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_iam_role_policy_attachment" "s3_lambda_policy" {
+  role       = aws_iam_role.s3_lambda_exec.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_iam_policy" "test_s3_bucket_access" {
+  name        = "TestS3BucketAccess"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "s3:GetObject", #Permitir obter um objeto do bucket
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:s3:::${aws_s3_bucket.test.id}/*"
+      },
+    ]
+  })
+}
+
+# Política para acessar o novo bucket do s3:
+
+resource "aws_iam_role_policy_attachment" "s3_lambda_test_s3_bucket_access" {
+  role       = aws_iam_role.s3_lambda_exec.name
+  policy_arn = aws_iam_policy.test_s3_bucket_access.arn
+}
+
+# Aqui teremos apoio na extração do aquivo zip da função
+
+resource "aws_lambda_function" "s3" {
+  function_name = "s3"
+
+  s3_bucket = aws_s3_bucket.lambda_bucket.id
+  s3_key    = aws_s3_object.lambda_s3.key
+
+  runtime = "nodejs16.x"
+  handler = "function.handler"
+
+  source_code_hash = data.archive_file.lambda_s3.output_base64sha256
+
+  role = aws_iam_role.s3_lambda_exec.arn
+}
+
+# Novo grupo de logs do CloudWatch para a função:
+
+resource "aws_cloudwatch_log_group" "s3" {
+  name = "/aws/lambda/${aws_lambda_function.s3.function_name}"
+
+  retention_in_days = 14
+}
+
+
+# "Compacte a função e carregue o zip para o bucket s3:"
+
+data "archive_file" "lambda_s3" {
+  type = "zip"
+
+  source_dir  = "../${path.module}/s3"
+  output_path = "../${path.module}/s3.zip"
+}
+
+resource "aws_s3_object" "lambda_s3" {
+  bucket = aws_s3_bucket.lambda_bucket.id
+
+  key    = "s3.zip"
+  source = data.archive_file.lambda_s3.output_path
+
+  source_hash = filemd5(data.archive_file.lambda_s3.output_path)
+}
+```
+
+Para deployar na sua máquina local, é necessário criar um simples script wrapper no Terraform:
+
+=== "**terraform/terraform.sh**"
+```sh
+#!/bin/sh
+
+set -e
+
+cd ../s3
+npm ci
+
+cd ../terraform
+terraform apply
+
+```
+
+(No terminal, diretório **/terraform**) Vamos fazer o script se tornar executável:
+
+```sh
+chmod +x terraform.sh
+
+```
+
+Em seguida podemos rodar:
+
+```sh
+./terraform.sh
+
+```
+
+Note que, ao rodarmos o comando acima, ele automaticamente rodará nosso terraform.sh que possui um "terraform apply", aplicando imediatamente as alterações que fizemos.
+
+
+No terminal receberemos de volta o nome do nosso recém-criado bucket do s3. Podemos invocar essa função s3 com o nome do bucket + nosso objeto para ver se o lambda conseguirá obter o objeto do bucket.
+
+```sh
+aws lambda invoke \
+--region=us-east-1 \
+--function-name=s3 \
+--cli-binary-format raw-in-base64-out \
+--payload '{"bucket":"test-<your>-<name>","object":"hello.json"}' \
+response.json
+                             /\
+                             ||
+      Substitua test-<your>-<name> pelo nome do seu bucket
+
+```
+
+Por fim, rode no terminal o seguinte comando:
+
+```sh
+cat responde.json
+
+```
+
+Se você receber como retorno ***Yeah, I am working, Avelinux :) !!***, parabéns, você concluiu sua aplicação e ela está funcionando!
+
+
+
+### Referências:
+
+Foram utilizadas dezenas de referências à construção do conhecimento aplicado aqui. Todo o conteúdo utilizado para a construção do aprendizado pode ser conferido abaixo:
+
+
 
 <!-- === "C"
 
