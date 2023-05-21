@@ -654,7 +654,7 @@ Para seguir esse tutorial é necessário: -->
 <p>Conta no <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-github-create-github-account.html"><strong>Github</strong></a> + <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">token de autorização</a> com permissão de criação e atualização de repositórios (caso você desejar subir e deixar o projeto registrado).</p>
 </li>
 <li>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04">Node.js instalado na máquina.</a> (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS).</p>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04">Node.js instalado na máquina.</a> (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS via terminal).</p>
 </li>
 <li>
 <p><a href="https://docs.aws.amazon.com/pt_br/lex/latest/dg/gs-account.html">Conta na AWS com usuário com permissões de Administrador.</a></p>
@@ -678,7 +678,7 @@ Em resumo, <strong>o Terraform é uma ferramenta importante para automatizar e g
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 </div>
-<p><em>Caso você desejar criar a infraestrutura do zero, segui e sugiro a seguinte estrutura de pastas:</em></p>
+<p><strong><em>Caso você desejar criar a infraestrutura do zero, segui e sugiro a seguinte estrutura de pastas:</em></strong></p>
 <div class="highlight"><pre><span></span><code>Cloud-Project
 │
 │
@@ -720,7 +720,7 @@ Você deve possuir um .csv com a chave de acesso (Secret Key) e a chave secreta 
 Dentro do terminal Ubuntu, insira os comandos:</p>
 <div class="highlight"><pre><span></span><code>AWS Configure
 </code></pre></div>
-<p>Após o comando acima, serão solicitadas as chaves de acesso</p>
+<p>Após o comando acima, serão solicitadas as suas chaves de acesso. Coloque-as no terminal como solicitado e bora trabalhar!</p>
 <h2 id="criando-uma-funcao-lambda-no-terraform">Criando uma função Lambda no Terraform<a class="headerlink" href="#criando-uma-funcao-lambda-no-terraform" title="Permanent link">&para;</a></h2>
 <p>O primeiro passo será criarmos uma função lambda que, futuramente, será integrada com o AWS API Gateway.
 Inicialmente, começaremos com uma função simples baseada em <strong>NodeJS</strong> sem nenhuma dependência.</p>
@@ -758,7 +758,16 @@ Usar emojis da lista:
 
 <div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1"><strong>index.js</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Event: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">);</span>
 <span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">;</span>
 
@@ -768,11 +777,35 @@ Usar emojis da lista:
 
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
 <span class="p">};</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Ao invocar essa função com uma consulta de URL e com o parâmetro Name definido, ela retornará "Hello, Name!".</p>
 <div class="tabbed-set" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1"><strong>index.js</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Event: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">);</span>
 <span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">responseMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">;</span>
 
@@ -797,7 +830,7 @@ Usar emojis da lista:
 
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
 <span class="p">};</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Também será verificado o método <strong>HTTP GET e POST</strong> para que seja verificada a resposta padrão. Foi especificado o <strong>código de status '200',
 tipo de conteúdo e a mensagem</strong> para ser retornada ao chamador.</p>
 <h2 id="criando-o-provider">Criando o provider<a class="headerlink" href="#criando-o-provider" title="Permanent link">&para;</a></h2>
@@ -807,7 +840,22 @@ Criaremos os arquivos <strong><em>.tf</em></strong> dentro de uma pasta intitula
 <p>Isso é feito apenas para que, caso alguém pegue esse projeto no futuro e rode em outra versão de Terraform ou com configurações diferentes das que foram aqui padronizadas, o projeto não funcione.</p>
 <div class="tabbed-set" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1"><strong>terraform/provider.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nb">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hashicorp/aws&quot;</span>
@@ -823,7 +871,7 @@ Criaremos os arquivos <strong><em>.tf</em></strong> dentro de uma pasta intitula
 <span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span><span class="c1"> # Região Northern Virginia</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="bucket-do-s3">Bucket do S3<a class="headerlink" href="#bucket-do-s3" title="Permanent link">&para;</a></h2>
 <p>Agora nós construiremos uma função com todas as dependências, empacotaremos como um arquivo <strong><em>zip</em></strong> para que, assim,
 consigamos subir num bucket do S3. Ou seja, quando criamos o lambda, apontamos para esse objeto de arquvo zip no bucket S3.</p>
@@ -831,15 +879,26 @@ consigamos subir num bucket do S3. Ou seja, quando criamos o lambda, apontamos p
 nos ajudar a nomear nosso bucket S3.</p>
 <div class="tabbed-set" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1"><strong>terraform/lambda-bucket.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lambda&quot;</span>
 <span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Em seguida, vamos criar o próprio bucket do S3 com o nome gerado.</p>
 <div class="tabbed-set" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1"><strong>terraform/lambda-bucket.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lambda&quot;</span>
 <span class="w">  </span><span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 <span class="p">}</span>
@@ -848,11 +907,28 @@ nos ajudar a nomear nosso bucket S3.</p>
 <span class="err">+</span><span class="w">  </span><span class="na">bucket</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">random_pet.lambda_bucket_name.id</span>
 <span class="err">+</span><span class="w">  </span><span class="na">force_destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Por padrão, deixaremos todo o acesso público ao bucket bloqueado.</p>
 <div class="tabbed-set" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1"><strong>terraform/lambda-bucket.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;lambda&quot;</span>
 <span class="w">  </span><span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 <span class="p">}</span>
@@ -870,13 +946,35 @@ nos ajudar a nomear nosso bucket S3.</p>
 <span class="err">+</span><span class="w">  </span><span class="na">ignore_public_acls</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <span class="err">+</span><span class="w">  </span><span class="na">restrict_public_buckets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="iam-e-policies">IAM e Policies<a class="headerlink" href="#iam-e-policies" title="Permanent link">&para;</a></h2>
 <p>Agora criaremos o código Terraform do lambda. Lembrando que o lambda exigirá acesso a outros serviços da AWS (como o CloudWatch, para gravar logs) e, no nosso caso, concederemos acesso ao bucket do S3 para que seja possível a leitura de um arquivo.</p>
 <p>Para isso, precisamos criar uma função do IAM e permitir que o lambda a use.</p>
 <div class="tabbed-set" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><label for="__tabbed_7_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
 
 <span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
@@ -899,7 +997,7 @@ nos ajudar a nomear nosso bucket S3.</p>
 <span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.name</span>
 <span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="criando-uma-funcao-lambda">Criando uma função Lambda<a class="headerlink" href="#criando-uma-funcao-lambda" title="Permanent link">&para;</a></h2>
 <p>O próximo recurso será criar a função lambda, a qual chamaremos de "hello". Em seguida especificaremos o nome do intervalo onde
 armazenaremos todos os lambdas. E nosso key pointing irá apontar para um arquivo zip com uma função.</p>
@@ -907,7 +1005,43 @@ armazenaremos todos os lambdas. E nosso key pointing irá apontar para um arquiv
 Se o hash do arquivo zip for diferente, a reimplantação do lambda será forçada.</p>
 <div class="tabbed-set" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><label for="__tabbed_8_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
 
 <span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
@@ -944,14 +1078,56 @@ Se o hash do arquivo zip for diferente, a reimplantação do lambda será força
 
 <span class="err">+</span><span class="w">  </span><span class="na">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.hello_lambda_exec.arn</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="criando-o-cloudwatch">Criando o CloudWatch<a class="headerlink" href="#criando-o-cloudwatch" title="Permanent link">&para;</a></h2>
 <p>Para depurar, criamos um grupo de logs do CloudWatch que conseguisse armazenar todas as instruções e erros do console.log na função.
 Definimos a retenção para 30 dias, porém poderia ser uma quantidade maior ou menor também, a depender das intenções de quem está
 desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de execução do lambda).</p>
 <div class="tabbed-set" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><label for="__tabbed_9_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
 
 <span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
@@ -994,11 +1170,60 @@ desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de
 
 <span class="err">+</span><span class="w">  </span><span class="na">retention_in_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Em seguida, adicionaremos o recurso que empacota o lambda como um arquivo zip.</p>
 <div class="tabbed-set" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><label for="__tabbed_10_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
 
 <span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
@@ -1048,11 +1273,69 @@ desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de
 <span class="err">+</span><span class="w">  </span><span class="na">source_dir</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../${path.module}/hello&quot;</span>
 <span class="err">+</span><span class="w">  </span><span class="na">output_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../${path.module}/hello.zip&quot;</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Nosso último componente visa obter o arquivo zip e carregar no bucket do S3.</p>
 <div class="tabbed-set" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><label for="__tabbed_11_1"><strong>terraform/hello-lambda.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;hello_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-lambda&quot;</span>
 
 <span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
@@ -1111,35 +1394,79 @@ desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de
 
 <span class="err">+</span><span class="w">  </span><span class="na">etag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">filemd5</span><span class="p">(</span><span class="nv">data.archive_file.lambda_hello.output_path</span><span class="p">)</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="inicializando-o-terraform">Inicializando o Terraform<a class="headerlink" href="#inicializando-o-terraform" title="Permanent link">&para;</a></h2>
-<p>Com os passos feitos até aqui já conseguimos inicializar o terraform e aplicar suas alterações.</p>
+<p>Com os passos feitos até aqui já conseguimos inicializar o terraform:</p>
 <div class="highlight"><pre><span></span><code><span class="err">terraform</span><span class="w"> </span><span class="err">init</span>
-<span class="err">terraform</span><span class="w"> </span><span class="err">apply</span>
 </code></pre></div>
+<p><img alt="terraforminit" src="screenshots/001.png" /></p>
+<p>Agora aplicamos as alterações:</p>
+<p><div class="highlight"><pre><span></span><code><span class="err">terraform</span><span class="w"> </span><span class="err">apply</span>
+</code></pre></div>
+<img alt="terraforminit" src="screenshots/002.png" /></p>
 <blockquote>
 <p><img alt="⚠️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/26a0.svg" title=":warning:" /> <strong>Dica visual</strong></p>
-<p>Quando o terraform concluir suas etapas até aqui, podemos entrar no dashboard da AWS e encontrar, dentre outras coisas, um bucket S3 recém-criado com um nome definido por meio de um gerador de animais de estimação aleatório.</p>
+<p>Quando o terraform concluir suas etapas até aqui, podemos entrar no dashboard da AWS e encontrar, dentre outras coisas, um bucket S3 recém-criado com um nome definido por meio de um gerador de animais de estimação aleatório.
+<img alt="terraforminit" src="screenshots/003.png" />
+<img alt="terraforminit" src="screenshots/004.png" /></p>
 </blockquote>
 <hr />
 <p><strong>Para abstrair:</strong></p>
 <p>Note que dentro do bucket são armazenadas funções lambdas dentro de um <strong>zip.</strong></p>
 <p>Quando entramos na dashboard da <strong>AWS CloudWatch</strong> também conseguimos ver o grupo de logs criado.</p>
+<p><img alt="terraforminit" src="screenshots/005.png" /></p>
 <p>No dashboard do <strong>AWS Lambda</strong> conseguimos ver a função lambda empacotada como um zip.</p>
+<p><img alt="terraforminit" src="screenshots/006.png" /></p>
 <hr />
-<p>Como ainda não temos o API Gateway, conseguimos invocar a função com o comando <strong><em>aws lambda invoke</em></strong>.</p>
-<p>Lembre-se de especificar ou conferir se o nome da região, função e arquivo estão corretos pra registrar a resposta da função.</p>
-<div class="highlight"><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">lambda</span><span class="w"> </span><span class="err">invoke</span><span class="w"> </span><span class="na">--region</span><span class="o">=</span><span class="err">us-east-</span><span class="m">1</span><span class="w"> </span><span class="na">--function-name</span><span class="o">=</span><span class="err">hello</span><span class="w"> </span><span class="nv">response.json</span>
+<p>Vamos agora invocar a função com o comando <strong><em>aws lambda invoke</em></strong>.</p>
+<p>Lembre-se de especificar ou conferir se o nome da região, função e arquivo estão corretos para registrar a resposta da função.</p>
+<p><div class="highlight"><pre><span></span><code><span class="err">aws</span><span class="w"> </span><span class="err">lambda</span><span class="w"> </span><span class="err">invoke</span><span class="w"> </span><span class="na">--region</span><span class="o">=</span><span class="err">us-east-</span><span class="m">1</span><span class="w"> </span><span class="na">--function-name</span><span class="o">=</span><span class="err">hello</span><span class="w"> </span><span class="nv">response.json</span>
 </code></pre></div>
-<p>Ao printarmos a resposta, é esperado um retorno "Hello, World!"</p>
-<div class="highlight"><pre><span></span><code><span class="err">cat</span><span class="w"> </span><span class="nv">response.json</span>
+<img alt="terraforminit" src="screenshots/007.png" />
+Ao printarmos a resposta, é esperado um retorno <strong>"Olá, Avelino!"</strong></p>
+<p><div class="highlight"><pre><span></span><code><span class="err">cat</span><span class="w"> </span><span class="nv">response.json</span>
 </code></pre></div>
+<img alt="terraforminit" src="screenshots/008.png" /></p>
 <h2 id="criando-o-api-gateway">Criando o API Gateway<a class="headerlink" href="#criando-o-api-gateway" title="Permanent link">&para;</a></h2>
 <p>A próxima estapa será criar o API Gateway e integrá-lo ao nosso lambda.</p>
 <p>Utilizaremos a versão 2 do API Gateway.</p>
 <div class="tabbed-set" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><label for="__tabbed_12_1"><strong>terraform/api-gateway.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_api&quot;</span><span class="w"> </span><span class="nv">&quot;main&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_api&quot;</span><span class="w"> </span><span class="nv">&quot;main&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">name</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;main&quot;</span>
 <span class="w">  </span><span class="na">protocol_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;HTTP&quot;</span>
 <span class="p">}</span>
@@ -1174,23 +1501,49 @@ desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de
 
 <span class="w">  </span><span class="na">retention_in_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="integrando-o-api-gateway-com-o-lambda">Integrando o API Gateway com o Lambda<a class="headerlink" href="#integrando-o-api-gateway-com-o-lambda" title="Permanent link">&para;</a></h2>
 <p>No próximo arquivo Terraform, integraremos o API Gateway com o hello lambda. Primeiramente apontaremos para o ID do API Gateway que acabamos de criar. Em seguida utilizaremos PROXYS AWS e solicitações POST para encaminhar solicitações do API Gateway para o Lambda</p>
 <div class="tabbed-set" data-tabs="13:1"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><label for="__tabbed_13_1"><strong>terraform/hello-api-gateway.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
 
 <span class="na">integration_uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.invoke_arn</span>
 <span class="na">integration_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AWS_PROXY&quot;</span>
 <span class="na">integration_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Podemos especificar qual tipo de solicitações queremos passar para o lambda, por exemplo: GET ou POST, como abaixo:</p>
 <div class="tabbed-set" data-tabs="14:1"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><label for="__tabbed_14_1"><strong>terraform/hello-api-gateway.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
 
 <span class="na">integration_uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.invoke_arn</span>
@@ -1211,12 +1564,41 @@ desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de
 <span class="err">+</span><span class="na">route_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;POST /hello&quot;</span>
 <span class="err">+</span><span class="na">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;integrations/${aws_apigatewayv2_integration.lambda_hello.id}&quot;</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Note que em ambos os exemplos é necessário especificar um destino para ser o nosso lambda.
 Também precisamos conceder permissões ao API Gateway para invocar nossa função lambda:</p>
 <div class="tabbed-set" data-tabs="15:1"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><label for="__tabbed_15_1"><strong>terraform/hello-api-gateway.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
 
 <span class="w">  </span><span class="na">integration_uri</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.invoke_arn</span>
@@ -1246,12 +1628,45 @@ Também precisamos conceder permissões ao API Gateway para invocar nossa funç�
 
 <span class="err">+</span><span class="w">  </span><span class="na">source_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${aws_apigatewayv2_api.main.execution_arn}/*/*&quot;</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="invocando-o-lambda">Invocando o Lambda<a class="headerlink" href="#invocando-o-lambda" title="Permanent link">&para;</a></h2>
 <p>Por fim, vamos imprimir no console o URL que podemos usar para invocar o lambda.</p>
 <div class="tabbed-set" data-tabs="16:1"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><label for="__tabbed_16_1"><strong>terraform/hello-api-gateway.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_apigatewayv2_integration&quot;</span><span class="w"> </span><span class="nv">&quot;lambda_hello&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">api_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_api.main.id</span>
 
 <span class="w">  </span><span class="na">integration_uri</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.hello.invoke_arn</span>
@@ -1285,24 +1700,30 @@ Também precisamos conceder permissões ao API Gateway para invocar nossa funç�
 <span class="err">+</span><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;hello_base_url&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="err">+</span><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_apigatewayv2_stage.dev.invoke_url</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
-<p>No terminal, daremos um apply no teraform.</p>
-<div class="highlight"><pre><span></span><code><span class="err">terraform</span><span class="w"> </span><span class="err">apply</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
+<p>No terminal, daremos um apply no terraform.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">terraform</span><span class="w"> </span><span class="err">apply</span>
+</code></pre></div></td></tr></table></div>
+<img alt="terraforminit" src="screenshots/0010.png" /></p>
 <blockquote>
 <p><img alt="⚠️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/26a0.svg" title=":warning:" /> <strong>Dica visual</strong></p>
-<p><em>Se entrarmos no dashboard do <strong>API Gateway</strong>, podemos ver nosso estágio de desenvolvimento "dev" criado e, em "rotas", conseguimos encontrar os métodos <strong><em>GET e POST.</em></strong></em></p>
+<p><em>Se entrarmos no dashboard do <strong>API Gateway</strong>, podemos ver nosso estágio de desenvolvimento "dev" criado e, em "rotas", conseguimos encontrar os métodos <strong><em>GET e POST.</em></strong></em>
+<img alt="terraforminit" src="screenshots/0011.png" />
+<img alt="terraforminit" src="screenshots/0012.png" /></p>
 </blockquote>
+<p>Até essa etapa, <strong>se você estiver seguindo a risca minha forma de fazer esse handout</strong>, é esperada que a estrutura do seu código esteja como na imagem abaixo:</p>
+<p><img alt="terraforminit" src="screenshots/009.png" /></p>
 <h2 id="hora-de-testar">Hora de testar<a class="headerlink" href="#hora-de-testar" title="Permanent link">&para;</a></h2>
 <p>Vamos agora testar o método HTTP GET.
-A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"</p>
-<div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="s2">&quot;https://&lt;id&gt;.execute-api.us-east-1.amazonaws.com/dev/hello?Name=InsperUniversity&quot;</span>
+A função deve analisá-lo e retornar a mensagem <strong>"Olá, <em>+ parâmetro de URL</em>"</strong></p>
+<p><div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="s2">&quot;https://&lt;id&gt;.execute-api.us-east-1.amazonaws.com/dev/hello?Name=InsperUniversity&quot;</span>
 <span class="w">               </span><span class="err">/</span>\
 <span class="w">               </span><span class="err">||</span>
 <span class="w">    </span><span class="err">Substitua</span><span class="w"> </span><span class="err">&lt;id&gt;</span><span class="w"> </span><span class="err">pelo</span><span class="w"> </span><span class="err">seu</span><span class="w"> </span><span class="err">id</span>
 </code></pre></div>
+<img alt="GET" src="screenshots/0013.png" /></p>
 <p>Também testaremos o método POST. Nesse caso, fornecemos um payload como um objeto json para o terminal e veremos que funciona também.</p>
-<div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span>\
+<p><div class="highlight"><pre><span></span><code><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span>\
 <span class="err">-H</span><span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>\
 <span class="err">-d</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Insper&quot;</span><span class="p">}</span><span class="err">&#39;</span><span class="w"> </span>\
 <span class="s2">&quot;https://&lt;id&gt;.execute-api.us-east-1.amazonaws.com/dev/hello&quot;</span>
@@ -1310,8 +1731,12 @@ A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"</p
 <span class="w">          </span><span class="err">||</span>
 <span class="err">Substitua</span><span class="w"> </span><span class="err">&lt;id&gt;</span><span class="w"> </span><span class="err">pelo</span><span class="w"> </span><span class="err">seu</span><span class="w"> </span><span class="err">id</span>
 </code></pre></div>
+<img alt="POST" src="screenshots/0014.png" /></p>
 <blockquote>
-<p><em>Se entrarmos no dashboard do <strong>CloudWatch</strong>, conseguiremos ver os logs de acesso registrados para cada solicitação.</em></p>
+<p><img alt="⚠️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/26a0.svg" title=":warning:" /> <strong>Dica visual</strong></p>
+<p><em>Se entrarmos no dashboard do <strong>CloudWatch</strong>, conseguiremos ver os logs de acesso registrados para nossas solicitações.</em>
+<img alt="Logs_CloudWatch" src="screenshots/0016.png" />
+<img alt="Logs_CloudWatch" src="screenshots/0027.png" /></p>
 </blockquote>
 <h2 id="criando-funcao-lambda-com-dependencias-externas-e-acesso-ao-bucket-s3">Criando função lambda com dependências externas e acesso ao bucket S3<a class="headerlink" href="#criando-funcao-lambda-com-dependencias-externas-e-acesso-ao-bucket-s3" title="Permanent link">&para;</a></h2>
 <p>Vamos agora criar outra função lambda com dependências externas e que garanta acesso para a leitura de um arquivo em um bucket S3.</p>
@@ -1319,7 +1744,24 @@ A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"</p
 <p>Para esse bucket também deixaremos o acesso público desativado.</p>
 <div class="tabbed-set" data-tabs="17:1"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><label for="__tabbed_17_1"><strong>terraform/test-bucket.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;test_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;test_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span>
 <span class="w">  </span><span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 <span class="p">}</span>
@@ -1337,11 +1779,39 @@ A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"</p
 <span class="w">  </span><span class="na">ignore_public_acls</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <span class="w">  </span><span class="na">restrict_public_buckets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Nós também podemos criar um objeto no S3 bucket utilizando terraform e o jsoncode build-in. Isso irá converter para um objeto json válido.</p>
 <div class="tabbed-set" data-tabs="18:1"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><label for="__tabbed_18_1"><strong>terraform/test-bucket.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;test_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;random_pet&quot;</span><span class="w"> </span><span class="nv">&quot;test_bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span>
 <span class="w">  </span><span class="na">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
 <span class="p">}</span>
@@ -1370,13 +1840,38 @@ A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"</p
 <span class="err">+</span><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;test_s3_bucket&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="err">+</span><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">random_pet.test_bucket_name.id</span>
 <span class="err">+</span><span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Agora iremos criar uma nova função lambda em uma nova pasta s3.</p>
 <p>Começaremos importando o aws-sdk e inicializando o objeto javascript.</p>
 <p>Essa função irá nos retornar o conteúdo do objeto.</p>
 <div class="tabbed-set" data-tabs="19:1"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><label for="__tabbed_19_1"><strong>s3/function.js</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;aws-sdk&quot;</span><span class="p">);</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;aws-sdk&quot;</span><span class="p">);</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">aws</span><span class="p">.</span><span class="nx">S3</span><span class="p">({</span><span class="w"> </span><span class="nx">apiVersion</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2006-03-01&quot;</span><span class="w"> </span><span class="p">});</span>
 
@@ -1402,23 +1897,114 @@ A função deve analisá-lo e retornar a mensagem "Olá, + parâmetro de URL"</p
 <span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Dentro do diretório da recém-criada pasta "s3", devemos inicializar o projeto nodejs com o seguinte comando:</p>
 <div class="tabbed-set" data-tabs="20:1"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><label for="__tabbed_20_1"><strong>/s3</strong></label><div class="tabbed-content"></div>
 </div>
 <div class="highlight"><pre><span></span><code><span class="err">npm</span><span class="w"> </span><span class="err">init</span>
 </code></pre></div>
-<p>Esse comando irá gerar arquivos package.json com dependências.
-Não há necessidade de preencher as informações solicitadas, basta teclar "enter" para cada info solicitada.</p>
+<p>Esse comando irá gerar arquivos <em>package.json</em> com dependências.
+<strong><em>Não há necessidade de preencher as informações solicitadas, basta teclar "enter" para cada info solicitada.</em></strong></p>
+<p><img alt="Logs_CloudWatch" src="screenshots/0018.png" /></p>
 <p>Em seguida, iremos instalar o módulo <a href="https://aws.amazon.com/pt/sdk-for-javascript/">aws-sdk</a>:</p>
 <div class="tabbed-set" data-tabs="21:1"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><label for="__tabbed_21_1"><strong>/s3</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="err">npm</span><span class="w"> </span><span class="err">install</span><span class="w"> </span><span class="err">aws-sdk</span>
+<p><div class="highlight"><pre><span></span><code><span class="err">npm</span><span class="w"> </span><span class="err">install</span><span class="w"> </span><span class="err">aws-sdk</span>
 </code></pre></div>
+<img alt="Logs_CloudWatch" src="screenshots/0019.png" /></p>
 <p>Agora retornaremos à pasta "Terraform" e iremos criar nossas políticas de acesso.</p>
 <div class="tabbed-set" data-tabs="22:1"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><label for="__tabbed_22_1"><strong>terraform/s3-lambda.tf</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;s3_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;s3_lambda_exec&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;s3-lambda&quot;</span>
 
 <span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="dl">POLICY</span>
@@ -1508,11 +2094,19 @@ Não há necessidade de preencher as informações solicitadas, basta teclar "en
 
 <span class="w">  </span><span class="na">source_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">filemd5</span><span class="p">(</span><span class="nv">data.archive_file.lambda_s3.output_path</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>Para deployar diretamente na sua máquina local, é necessário criar um simples script wrapper no Terraform:</p>
+</code></pre></div></td></tr></table></div>
+<p>Vamos agora deployar diretamente na máquina local. Para isso será necessário criar um simples script wrapper no Terraform:</p>
 <div class="tabbed-set" data-tabs="23:1"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><label for="__tabbed_23_1"><strong>terraform/terraform.sh</strong></label><div class="tabbed-content"></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/sh</span>
 
 <span class="nb">set</span><span class="w"> </span>-e
 
@@ -1521,14 +2115,15 @@ npm<span class="w"> </span>ci
 
 <span class="nb">cd</span><span class="w"> </span>../terraform
 terraform<span class="w"> </span>apply
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>(No terminal, diretório <strong>/terraform</strong>) Vamos fazer o script se tornar executável:</p>
 <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>terraform.sh
 </code></pre></div>
 <p>Em seguida podemos rodar:</p>
 <div class="highlight"><pre><span></span><code>./terraform.sh
 </code></pre></div>
-<p>Note que, ao rodarmos o comando acima, ele automaticamente rodará nosso terraform.sh que possui um "terraform apply", aplicando imediatamente as alterações que fizemos.</p>
+<p><img alt="Outputs" src="screenshots/0020.png" /></p>
+<p>Note que, ao rodarmos o comando acima, ele automaticamente rodará nosso terraform.sh que possui um "terraform apply", <strong>aplicando imediatamente as alterações que fizemos</strong>, sem que tenhamos que utilizar novamente o comando <em>"terraform apply"</em> no terminal.</p>
 <p>No terminal receberemos de volta o nome do nosso recém-criado bucket do s3. Podemos invocar essa função s3 com o nome do bucket + nosso objeto para ver se o lambda conseguirá obter o objeto do bucket.</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>invoke<span class="w"> </span><span class="se">\</span>
 --region<span class="o">=</span>us-east-1<span class="w"> </span><span class="se">\</span>
@@ -1543,7 +2138,18 @@ response.json
 <p>Por fim, rode no terminal o seguinte comando:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>responde.json
 </code></pre></div>
-<p>Se você receber como retorno <strong><em>Yeah, I am working, Avelinux :) !!</em></strong>, parabéns, você concluiu sua aplicação e ela está funcionando!</p>
+<p><img alt="S3_funcionando" src="screenshots/0021.png" /></p>
+<p>Se você receber como retorno <strong><em>Yeah, I am working, Avelinux :)</em></strong>, parabéns, você concluiu sua aplicação e ela está funcionando!</p>
+<p>Agora que você já viu todo o ambiente da sua IaaC (Infrastructure as a Code) sendo criado e funcionando, <strong>chegou a hora de destruí-lo!</strong></p>
+<p>Utilize o comando a seguir no seu terminal para destruir a infraestrutura:
+<div class="highlight"><pre><span></span><code>terraform<span class="w"> </span>destroy
+</code></pre></div>
+O resultado final deve ser algo parecido com a imagem a seguir:</p>
+<p><img alt="resultado" src="screenshots/0029.png" /></p>
+<blockquote>
+<p><img alt="⚠️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/26a0.svg" title=":warning:" /> <strong>Dica visual</strong></p>
+<p>Entre no dashboard da AWS e veja que todos os recursos sumiram: eles foram destruidos!</p>
+</blockquote>
 <h3 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h3>
 <p>Foram utilizadas dezenas de referências à construção do conhecimento aplicado aqui neste material. Todo o conteúdo utilizado para a construção do aprendizado pode ser conferido abaixo:</p>
 <ol>
