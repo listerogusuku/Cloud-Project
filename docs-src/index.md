@@ -158,7 +158,7 @@ Você deve possuir um .csv com a chave de acesso (Secret Key) e a chave secreta 
 Dentro do terminal Ubuntu, insira os comandos:
 
 ```
-AWS Configure
+aws configure
 ```
 
 Após o comando acima, serão solicitadas as suas chaves de acesso. Coloque-as no terminal como solicitado e bora trabalhar!

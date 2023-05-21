@@ -1,11 +1,17 @@
 
-site_name: 'AWS S3 - Lister Ogusuku Ribeiro'
+site_name: 'AWS - Cloud Computing | Lister Ogusuku Ribeiro'
 
 theme:
   features:
     - instant
     - navigation.expand
     - tabs: true
+    # - toc.integrate
+    # - navigation.top
+    # - search.suggest
+    # - search.highlight
+    # - content.code.annotation
+    # - content.code.copy
   name: 'material'
   palette:
       primary: 'black'
@@ -13,6 +19,15 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/listerogusuku
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCJGD3ksGrX45TId4EyQKaiQ
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/lister-ogusuku-ribeiro-6a1052148/
 
 # Copyright
 copyright: 'Copyright &copy; 2019 / Prof. Rafael Corsi / rafael.corsi@insper.edu.br'
@@ -23,6 +38,7 @@ site_dir: docs
 
 nav:
   - Home: index.md
+  - Vídeos interessantes: interestingvideos.md
 
 # Extensions
 markdown_extensions:
