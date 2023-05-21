@@ -75,13 +75,18 @@ Para seguir esse tutorial é necessário: -->
 
 O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem [**AWS (Amazon Web Services).**](https://aws.amazon.com/pt/what-is-aws/) A ideia é subir uma aplicação sem servidor na AWS utilizando o **[S3](https://aws.amazon.com/pt/s3/), [Lambda](https://aws.amazon.com/pt/lambda/), [API Gateway](https://aws.amazon.com/pt/api-gateway/) e o [CloudWatch](https://aws.amazon.com/pt/cloudwatch/)** colocando em prática os conceitos de **IaaC (Infrastructure as a Code)**. O diagrama visual da nossa aplicação pode ser conferido a seguir:
 
+
+**--------------------------------------DIAGRAMA DA APLICAÇÃO--------------------------------------**
+
 ## Desenvolvendo a infraestrutura
 
 ### 1. Pré-requisitos
 
 - Para rodar nossa infraestrutura, estamos utilizando o **Ubuntu 22.04.2 LTS** (o qual já estava instalado no nosso Windows). A infra pode funcionar em outras versões, porém **_não há garantia de funcionamento._** Assim sendo, indicamos o uso da versão supracitada para testar nossa aplicação (ou até mesmo rodar a sua própria).
 
-- Conta no [**Github**](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-github-create-github-account.html) + [token de autorização](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) com permissão de criação e atualização de repositórios (caso você desejar subir e deixar o projeto registrado).
+![ubuntu](screenshots/ubuntu.png)
+
+- Conta no [**Github**](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-github-create-github-account.html) (+ [token de autorização](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), _se necessário_, com permissão de criação e atualização de repositórios), caso você desejar subir e deixar o projeto registrado.
 
 - [Node.js instalado na máquina.](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04) (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS via terminal).
 
@@ -1198,7 +1203,7 @@ O resultado final deve ser algo parecido com a imagem a seguir:
 
 > :warning: **Dica visual**
 
-> Entre no dashboard da AWS e veja que todos os recursos sumiram: eles foram destruidos!
+> Entre no dashboard da AWS e veja que todos os recursos sumiram: eles foram destruídos!
 
 ### Referências
 

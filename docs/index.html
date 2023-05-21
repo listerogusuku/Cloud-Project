@@ -661,14 +661,16 @@ Para seguir esse tutorial é necessário: -->
 <p><img alt="" src="https://pimages.toolbox.com/wp-content/uploads/2021/07/09134159/38-3.png" /></p>
 <h2 id="sobre-o-projeto"><img alt="📝" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f4dd.svg" title=":pencil:" /> Sobre o Projeto<a class="headerlink" href="#sobre-o-projeto" title="Permanent link">&para;</a></h2>
 <p>O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem <a href="https://aws.amazon.com/pt/what-is-aws/"><strong>AWS (Amazon Web Services).</strong></a> A ideia é subir uma aplicação sem servidor na AWS utilizando o <strong><a href="https://aws.amazon.com/pt/s3/">S3</a>, <a href="https://aws.amazon.com/pt/lambda/">Lambda</a>, <a href="https://aws.amazon.com/pt/api-gateway/">API Gateway</a> e o <a href="https://aws.amazon.com/pt/cloudwatch/">CloudWatch</a></strong> colocando em prática os conceitos de <strong>IaaC (Infrastructure as a Code)</strong>. O diagrama visual da nossa aplicação pode ser conferido a seguir:</p>
+<p><strong>--------------------------------------DIAGRAMA DA APLICAÇÃO--------------------------------------</strong></p>
 <h2 id="desenvolvendo-a-infraestrutura">Desenvolvendo a infraestrutura<a class="headerlink" href="#desenvolvendo-a-infraestrutura" title="Permanent link">&para;</a></h2>
 <h3 id="1-pre-requisitos">1. Pré-requisitos<a class="headerlink" href="#1-pre-requisitos" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Para rodar nossa infraestrutura, estamos utilizando o <strong>Ubuntu 22.04.2 LTS</strong> (o qual já estava instalado no nosso Windows). A infra pode funcionar em outras versões, porém <strong><em>não há garantia de funcionamento.</em></strong> Assim sendo, indicamos o uso da versão supracitada para testar nossa aplicação (ou até mesmo rodar a sua própria).</li>
+</ul>
+<p><img alt="ubuntu" src="screenshots/ubuntu.png" /></p>
+<ul>
 <li>
-<p>Para rodar nossa infraestrutura, estamos utilizando o <strong>Ubuntu 22.04.2 LTS</strong> (o qual já estava instalado no nosso Windows). A infra pode funcionar em outras versões, porém <strong><em>não há garantia de funcionamento.</em></strong> Assim sendo, indicamos o uso da versão supracitada para testar nossa aplicação (ou até mesmo rodar a sua própria).</p>
-</li>
-<li>
-<p>Conta no <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-github-create-github-account.html"><strong>Github</strong></a> + <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">token de autorização</a> com permissão de criação e atualização de repositórios (caso você desejar subir e deixar o projeto registrado).</p>
+<p>Conta no <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-github-create-github-account.html"><strong>Github</strong></a> (+ <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">token de autorização</a>, <em>se necessário</em>, com permissão de criação e atualização de repositórios), caso você desejar subir e deixar o projeto registrado.</p>
 </li>
 <li>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04">Node.js instalado na máquina.</a> (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS via terminal).</p>
@@ -2165,7 +2167,7 @@ O resultado final deve ser algo parecido com a imagem a seguir:</p>
 <p><img alt="resultado" src="screenshots/0029.png" /></p>
 <blockquote>
 <p><img alt="⚠️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/26a0.svg" title=":warning:" /> <strong>Dica visual</strong></p>
-<p>Entre no dashboard da AWS e veja que todos os recursos sumiram: eles foram destruidos!</p>
+<p>Entre no dashboard da AWS e veja que todos os recursos sumiram: eles foram destruídos!</p>
 </blockquote>
 <h3 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h3>
 <p>Foram utilizadas dezenas de referências à construção do conhecimento aplicado aqui neste material. Todo o conteúdo utilizado para a construção do aprendizado pode ser conferido abaixo:</p>
@@ -2243,7 +2245,7 @@ Imagens você insere como em plain markdown, mas tem a vantagem de poder mudar a
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2019 / Prof. Rafael Corsi / rafael.corsi@insper.edu.br
+      Layout Copyright &copy; 2019 by Prof. Rafael Corsi / rafael.corsi@insper.edu.br | Written material Copyright &copy; 2023 by Lister Ogusuku Ribeiro / listeror@al.insper.edu.br
     </div>
   
   
