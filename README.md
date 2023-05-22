@@ -1,6 +1,6 @@
-# :cloud: APLICAÇÃO SEM SERVIDOR UTILIZANDO O AWS S3
+# :cloud: APLICAÇÃO SEM SERVIDOR UTILIZANDO O AWS S3, LAMBDA, API GATEWAY E CLOUDWATCH
 
-## :man_technologist: Desenvolvedor
+<!-- ## :man_technologist: Desenvolvedor
 
 <div align="center" style="max-width:68rem;">
 <table>
@@ -9,8 +9,8 @@
 
   </tr>
 </table>
-</div>
+</div> -->
 
-## :rocket: Acesse o proejto completo no link a seguir:
+## :rocket: Acesse o projeto completo no link a seguir:
 
-[AWS - Cloud Computing | Lister Ogusuku Ribeiro](https://listerogusuku.github.io/Cloud-Project/)
+## [**AWS - Cloud Computing | Lister Ogusuku Ribeiro**](https://listerogusuku.github.io/Cloud-Project/)
