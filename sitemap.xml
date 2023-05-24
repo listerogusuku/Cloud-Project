@@ -11,22 +11,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://listerogusuku.github.io/Cloud-Project/browser-support/</loc>
+         <loc>https://listerogusuku.github.io/Cloud-Project/conhecendo-a-aws/</loc>
          <lastmod>2023-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://listerogusuku.github.io/Cloud-Project/creating-your-site/</loc>
-         <lastmod>2023-05-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://listerogusuku.github.io/Cloud-Project/customization/</loc>
+         <loc>https://listerogusuku.github.io/Cloud-Project/desenvolvendo-a-infraestrutura/</loc>
          <lastmod>2023-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://listerogusuku.github.io/Cloud-Project/getting-started/</loc>
+         <lastmod>2023-05-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://listerogusuku.github.io/Cloud-Project/hospedar-um-site-estatico/</loc>
          <lastmod>2023-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -41,12 +41,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://listerogusuku.github.io/Cloud-Project/publishing-your-site/</loc>
+         <loc>https://listerogusuku.github.io/Cloud-Project/universo-da-computacao-em-nuvem/</loc>
          <lastmod>2023-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://listerogusuku.github.io/Cloud-Project/upgrade/</loc>
+         <lastmod>2023-05-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://listerogusuku.github.io/Cloud-Project/videos-interessantes/</loc>
          <lastmod>2023-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
