@@ -4,7 +4,6 @@
 
 O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem [**AWS (Amazon Web Services).**](https://aws.amazon.com/pt/what-is-aws/) A ideia é subir uma aplicação sem servidor na AWS utilizando o **[S3](https://aws.amazon.com/pt/s3/), [Lambda](https://aws.amazon.com/pt/lambda/), [API Gateway](https://aws.amazon.com/pt/api-gateway/) e o [CloudWatch](https://aws.amazon.com/pt/cloudwatch/)** colocando em prática os conceitos de **IaaC (Infrastructure as a Code)**. O diagrama visual da nossa aplicação pode ser conferido a seguir:
 
-
 **--------------------------------------DIAGRAMA DA APLICAÇÃO--------------------------------------**
 
 ## Desenvolvendo a infraestrutura
@@ -41,7 +40,7 @@ Após a instalação do Terraform na máquina, já é possível rodar a infraest
 
 O primeiro passo é clonar este repositório em uma pasta dentro do seu computador. _Caso não saiba como clonar um repositório na sua máquina local, acesse o tutorial presente [neste link](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) ou faça o download do respositório e descompacte o arquivo .zip no local desejado._
 
-!!! Tip
+!!! Dica
 
     ***Caso você desejar criar a infraestrutura do zero, segui e sugiro a seguinte estrutura de pastas:***
 
@@ -98,10 +97,7 @@ aws configure
 
 Após o comando acima, serão solicitadas as suas chaves de acesso. Coloque-as no terminal como solicitado e bora trabalhar!
 
-Caso você desejar **criar a infra (tal como sugerido e explicado detalhadamente neste handout)**, vá para a aba **"Criando uma função Lambda no Terraform"** e continue o hadout. Caso desejar **apenas rodá-la**, entre na pasta que você clonou a infra e rode os seguintes comandos:
-
-
-
+Caso você desejar **criar a infra (tal como sugerido e explicado detalhadamente neste handout)**, vá para a aba **"Criando uma função Lambda no Terraform"** e continue o handout. Caso desejar **apenas rodá-la**, entre na pasta que você clonou a infra e rode os seguintes comandos:
 
 ## Criando uma função Lambda no Terraform
 
@@ -156,7 +152,7 @@ exports.handler = async (event) => {
 };
 ```
 
-Ao invocar essa função com uma consulta de URL e com o parâmetro Name definido, ela retornará "Hello, Name!".
+Ao invocar essa função com uma consulta de URL e com o parâmetro Name definido, ela retornará "Hello, _Name_!".
 
 === "**index.js**"
 
@@ -188,8 +184,7 @@ exports.handler = async (event) => {
 };
 ```
 
-Também será verificado o método **HTTP GET e POST** para que seja verificada a resposta padrão. Foi especificado o **código de status '200',
-tipo de conteúdo e a mensagem** para ser retornada ao chamador.
+Também será verificado o método **HTTP GET e POST** para que seja verificada a resposta padrão. Foi especificado o **código de status '200', tipo de conteúdo e a mensagem** para ser retornada ao chamador.
 
 ## Criando o provider
 
@@ -568,13 +563,14 @@ Agora aplicamos as alterações:
 ```tf
 terraform apply
 ```
+
 ![terraforminit](screenshots/002.png)
 
 > :warning: **Dica visual**
 
 > Quando o terraform concluir suas etapas até aqui, podemos entrar no dashboard da AWS e encontrar, dentre outras coisas, um bucket S3 recém-criado com um nome definido por meio de um gerador de animais de estimação aleatório.
-![terraforminit](screenshots/003.png)
-![terraforminit](screenshots/004.png)
+> ![terraforminit](screenshots/003.png)
+> ![terraforminit](screenshots/004.png)
 
 ---
 
@@ -599,12 +595,14 @@ Lembre-se de especificar ou conferir se o nome da região, função e arquivo es
 ```tf
 aws lambda invoke --region=us-east-1 --function-name=hello response.json
 ```
+
 ![terraforminit](screenshots/007.png)
 Ao printarmos a resposta, é esperado um retorno **"Olá, Avelino!"**
 
 ```tf
 cat response.json
 ```
+
 ![terraforminit](screenshots/008.png)
 
 ## Criando o API Gateway
@@ -783,19 +781,19 @@ resource "aws_lambda_permission" "api_gw" {
 
 ```
 
-
 No terminal, daremos um apply no terraform.
 
 ```tf linenums="1"
 terraform apply
 ```
+
 ![terraforminit](screenshots/0010.png)
 
 > :warning: **Dica visual**
 
 > _Se entrarmos no dashboard do **API Gateway**, podemos ver nosso estágio de desenvolvimento "dev" criado e, em "rotas", conseguimos encontrar os métodos ***GET e POST.***_
-![terraforminit](screenshots/0011.png)
-![terraforminit](screenshots/0012.png)
+> ![terraforminit](screenshots/0011.png)
+> ![terraforminit](screenshots/0012.png)
 
 Até essa etapa, **se você estiver seguindo a risca minha forma de fazer esse handout**, é esperada que a estrutura do seu código esteja como na imagem abaixo:
 
@@ -812,6 +810,7 @@ curl "https://<id>.execute-api.us-east-1.amazonaws.com/dev/hello?Name=InsperUniv
                ||
     Substitua <id> pelo seu id
 ```
+
 ![GET](screenshots/0013.png)
 
 Também testaremos o método POST. Nesse caso, fornecemos um payload como um objeto json para o terminal e veremos que funciona também.
@@ -826,13 +825,14 @@ curl -X POST \
 Substitua <id> pelo seu id
 
 ```
+
 ![POST](screenshots/0014.png)
 
 > :warning: **Dica visual**
 
 > _Se entrarmos no dashboard do **CloudWatch**, conseguiremos ver os logs de acesso registrados para nossas solicitações._
-![Logs_CloudWatch](screenshots/0016.png)
-![Logs_CloudWatch](screenshots/0027.png)
+> ![Logs_CloudWatch](screenshots/0016.png)
+> ![Logs_CloudWatch](screenshots/0027.png)
 
 ## Criando função lambda com dependências externas e acesso ao bucket S3
 
@@ -841,7 +841,6 @@ Vamos agora criar outra função lambda com dependências externas e que garanta
 Novamente, utilizaremos o random pet para nos auxiliar com um nome aleatório e único para nosso bucket do S3 e dicionaremos o prefixo "test" (o que também auxilia na identificação do bucket).
 
 Para esse bucket também deixaremos o acesso público desativado.
-
 
 === "**terraform/test-bucket.tf**"
 
@@ -950,18 +949,18 @@ npm init
 ```
 
 Esse comando irá gerar arquivos _package.json_ com dependências.
-***Não há necessidade de preencher as informações solicitadas, basta teclar "enter" para cada info solicitada.***
+**_Não há necessidade de preencher as informações solicitadas, basta teclar "enter" para cada info solicitada._**
 
 ![Logs_CloudWatch](screenshots/0018.png)
 
 Em seguida, iremos instalar o módulo [aws-sdk](https://aws.amazon.com/pt/sdk-for-javascript/):
-
 
 === "**/s3**"
 
 ```tf
 npm install aws-sdk
 ```
+
 ![Logs_CloudWatch](screenshots/0019.png)
 
 Agora retornaremos à pasta "Terraform" e iremos criar nossas políticas de acesso.
@@ -1078,7 +1077,6 @@ terraform apply
 
 ```
 
-
 (No terminal, diretório **/terraform**) Vamos fazer o script se tornar executável:
 
 ```sh
@@ -1093,9 +1091,7 @@ Em seguida podemos rodar:
 
 ```
 
-
 ![Outputs](screenshots/0020.png)
-
 
 Note que, ao rodarmos o comando acima, ele automaticamente rodará nosso terraform.sh que possui um "terraform apply", **aplicando imediatamente as alterações que fizemos**, sem que tenhamos que utilizar novamente o comando _"terraform apply"_ no terminal.
 
@@ -1125,13 +1121,14 @@ cat responde.json
 
 :octicons-heart-fill-24:{ .mdx-heart } &nbsp; Se você receber como retorno **_Yeah, I am working from Insper, Avelinux :)_**, parabéns, você concluiu sua aplicação e ela está funcionando!
 
-
 Agora que você já viu todo o ambiente da sua IaaC (Infrastructure as a Code) sendo criado e funcionando, **chegou a hora de destruí-lo!**
 
 Utilize o comando a seguir no seu terminal para destruir a infraestrutura:
+
 ```sh
 terraform destroy
 ```
+
 O resultado final deve ser algo parecido com a imagem a seguir:
 
 ![resultado](screenshots/0029.png)
@@ -1140,22 +1137,7 @@ O resultado final deve ser algo parecido com a imagem a seguir:
 
     Entre no dashboard da AWS e veja que todos os recursos sumiram: eles foram destruídos!
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
+<!--
 # Desenvovendo a infraestrutura
 
 Project documentation is as diverse as the projects themselves and Material for
@@ -1336,7 +1318,7 @@ Then, e.g. to override the site title, add the following lines to `main.html`:
 ```
 
 If you intend to __add__ something to a block rather than to replace it
-altogether with new content, use `{{ super() }}` inside the block to include the 
+altogether with new content, use `{{ super() }}` inside the block to include the
 original block content. This is particularly useful when adding third-party
 scripts to your docs, e.g.
 
@@ -1345,9 +1327,13 @@ scripts to your docs, e.g.
 
 {% block scripts %}
   <!-- Add scripts that need to run before here -->
-  {{ super() }}
+
+{{ super() }}
+
   <!-- Add scripts that need to run afterwards here -->
+
 {% endblock %}
+
 ```
 
 The following template blocks are provided by the theme:
@@ -1397,17 +1383,21 @@ In order to start development on Material for MkDocs, a [Node.js] version of
 at least 14 is required. First, clone the repository:
 
 ```
+
 git clone https://github.com/squidfunk/mkdocs-material
+
 ```
 
 Next, all dependencies need to be installed, which is done with:
 
 ```
+
 cd mkdocs-material
 pip install -e .
 pip install mkdocs-minify-plugin
 pip install mkdocs-redirects
 npm install
+
 ```
 
   [Node.js]: https://nodejs.org
@@ -1417,14 +1407,18 @@ npm install
 Start the watcher with:
 
 ```
+
 npm start
+
 ```
 
 Then, in a second terminal window, start the MkDocs live preview server with:
 
 ```
+
 mkdocs serve --watch-theme
-```
+
+````
 
 Point your browser to [localhost:8000][live preview] and you should see this
 very documentation in front of you.
@@ -1443,7 +1437,7 @@ When you're finished making your changes, you can build the theme by invoking:
 
 ``` sh
 npm run build # (1)!
-```
+````
 
 1.  While this command will build all theme files, it will skip the overrides
     used in Material for MkDocs' own documentation which are not distributed

@@ -1,11 +1,8 @@
-
 ## O que é e para que serve a AWS?
 
 ![AWS](./screenshots/aws.png)
 
-
-
->A Amazon Web Services (AWS) é a plataforma de nuvem **mais adotada e mais abrangente do mundo**, oferecendo mais de **200 serviços completos de datacenters em todo o mundo.** Milhões de clientes, incluindo as startups que crescem mais rápido, as maiores empresas e os maiores órgãos governamentais, estão **usando a AWS para reduzir custos, ganhar agilidade e inovar mais rapidamente.** _(Texto extraído do site da AWS)_
+> A Amazon Web Services (AWS) é a plataforma de nuvem **mais adotada e mais abrangente do mundo**, oferecendo mais de **200 serviços completos de datacenters em todo o mundo.** Milhões de clientes, incluindo as startups que crescem mais rápido, as maiores empresas e os maiores órgãos governamentais, estão **usando a AWS para reduzir custos, ganhar agilidade e inovar mais rapidamente.** _(Texto extraído do site da AWS)_
 
 A Amazon Web Services (AWS) é uma plataforma de computação em nuvem oferecida pela Amazon. Ela fornece uma ampla gama de serviços de **computação, armazenamento, banco de dados, análise, rede, inteligência artificial e aprendizado de máquina, entre outros.** A AWS é projetada para fornecer uma infraestrutura flexível, escalável e confiável para empresas de todos os tamanhos.
 
@@ -13,10 +10,7 @@ A infraestrutura da AWS é composta por uma **rede global de data centers locali
 
 _O vídeo a seguir - disponibilizado e produzido pela própria AWS - explica um pouco melhor (e de forma mais visual) o que é a AWS._
 
-
 <iframe width="454" height="254" src="https://www.youtube.com/embed/a9__D53WsUs" title="What is AWS? | Amazon Web Services" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
 
 ## Alguns exemplos de uso da AWS
 
@@ -37,6 +31,7 @@ Ainda não ficou claro a importância do uso da AWS? Então vamos contextulizar 
 ## A AWS no dia-a-dia das corporações
 
 ### **AWS no Comércio Eletrônico:**
+
 ![MAGALU](./screenshots/magalu.png)
 
 Imagine que a **Magazine Luiza** precisa hospedar seu site e lidar com **picos de tráfego durante grandes eventos de venda,** como a **Black Friday.** Eles optam por utilizar a AWS para hospedar sua infraestrutura de TI. Com os serviços de escalabilidade automática da AWS, a empresa pode **aumentar a capacidade de servidores e recursos computacionais conforme a demanda, garantindo que seu site permaneça disponível mesmo durante períodos de tráfego intenso.**
@@ -52,17 +47,31 @@ Considere que a startup de energia **Lister Energy** está desenvolvendo uma pla
 Nesse caso, a startup aproveita os **serviços de Big Data da AWS.** Eles utilizam o Amazon Kinesis para ingestão e processamento de dados em tempo real, permitindo que os dados dos sensores sejam **transmitidos e analisados em tempo real.** Em seguida, eles utilizam o Amazon EMR para realizar **análises mais complexas e gerar insights valiosos sobre o consumo de energia.** Com a escalabilidade oferecida pela AWS, a startup pode lidar facilmente com o aumento no volume de dados à medida que adquire mais clientes.
 
 ### **AWS em uma empresa de segurança cibernética:**
+
 ![CYBER AVELINUX](./screenshots/CYBER_AVELINUX.png)
 Vamos imaginar que a empresa de segurança cibernética **Cyber Avelinux** _(Avelino, pode falar, curtiu né? hahaha)_ fornece soluções de detecção de ameaças para organizações. Eles desenvolveram um **modelo de Machine Learning para identificar comportamentos suspeitos em tempo real,** a fim de proteger seus clientes contra ataques cibernéticos.
 
 A empresa utiliza o Amazon SageMaker, um serviço de Machine Learning da AWS, para **treinar e implantar seu modelo.** Eles aproveitam a capacidade de escalabilidade do SageMaker para **processar grandes volumes de dados de logs de segurança em tempo real, identificando padrões e comportamentos anormais.** Com isso, a empresa consegue fornecer uma solução de segurança eficaz e adaptável às necessidades em constante evolução de seus clientes.
 
-Essas histórias exemplificam algumas das necessidades de uso da AWS na vida real e como as empresas podem aproveitar os serviços da plataforma para atender a diferentes demandas e desafios específicos de cada setor.
+### **AWS na vida de um estudante de pós-graduação da USP:**
 
+![Carteirinha Demay](./screenshots/carteirinha_demay.png)
 
-Agora que você já conheceu melhor a AWS e sua utilidade, bora utilizar seu primeiro serviço de computação em nuvem?
+Tiago Demay é um estudante de pós-graduação da Universidade de São Paulo, especializado em ciência de dados. Ele está trabalhando em sua tese de mestrado, que envolve a **análise de grandes conjuntos de dados de imagens médicas** para desenvolver métodos de detecção precoce de doenças.
 
-<!-- After you've [installed] Material for MkDocs, you can bootstrap your project 
+Para realizar sua pesquisa, Demay adoraria utilizar o monstrão _(supercomputador do Insper)_, mas durante o horário em que ele está no Insper, o Avelino está fazendo uso da máquina, então Demay recorre aos recursos da AWS, afinal, todos os dias precisa retornar à USP para dar continuidade aos seus estudos. Ele faz uso do **Amazon EC2 para provisionar instâncias de alto desempenho e executar algoritmos de processamento de imagens em larga escala.** Com a flexibilidade e a escalabilidade oferecidas pela AWS, ele pode **processar rapidamente um grande número de imagens médicas**, acelerando sua pesquisa e permitindo que ele realize experimentos em tempo hábil.
+
+Além disso, Demay utiliza o **Amazon S3 para armazenar e gerenciar os conjuntos de dados de imagens médicas.** Ele aprecia a durabilidade e a disponibilidade do armazenamento na nuvem da AWS, pois pode acessar seus dados de forma segura de qualquer lugar e a qualquer momento.
+
+Para aprimorar suas análises e extrair informações valiosas das imagens médicas, Demay faz uso do **Amazon Rekognition, um serviço de análise de imagem baseado em inteligência artificial (IA).** Ele treina **modelos de machine learning** usando o **Amazon SageMaker** e aplica esses modelos para detectar e classificar características relevantes nas imagens, auxiliando-o na identificação precoce de doenças.
+
+Ao utilizar os serviços da AWS, Demay tem acesso a uma **infraestrutura escalável, recursos de armazenamento confiáveis e ferramentas avançadas de análise de imagem.** Isso permite que ele conduza sua pesquisa de forma eficiente, descobrindo padrões e insights significativos em grandes conjuntos de dados de imagens médicas, contribuindo para o avanço da ciência e da saúde.
+
+Essas histórias exemplificam algumas das necessidades de uso da AWS na vida real e como as empresas e pessoas podem aproveitar os serviços da plataforma para atender a diferentes demandas e desafios específicos de cada setor.
+
+Agora que você já conheceu melhor a AWS e sua utilidade, **bora utilizar seu primeiro serviço de computação em nuvem?**
+
+<!-- After you've [installed] Material for MkDocs, you can bootstrap your project
 documentation using the `mkdocs` executable. Go to the directory where you want
 your project to be located and enter:
 
@@ -110,7 +119,7 @@ theme:
 
 ???+ tip "Recommended: [configuration validation and auto-complete]"
 
-    In order to minimize friction and maximize productivity, Material for MkDocs 
+    In order to minimize friction and maximize productivity, Material for MkDocs
     provides its own [schema.json][^1] for `mkdocs.yml`. If your editor supports
     YAML schema validation, it's definitely recommended to set it up:
 

@@ -103,8 +103,8 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/listerogusuku
-    - icon: fontawesome/brands/youtube
-      link: www.youtube.com/@listerogusuku
+    # - icon: fontawesome/brands/youtube
+    #   link: www.youtube.com/@listerogusuku
     # - icon: fontawesome/brands/gitter
     #   link: https://gitter.im/squidfunk/mkdocs-material
     # - icon: fontawesome/brands/docker
@@ -157,15 +157,15 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
-# Page tree
+# Page tree hospedar-um-site-estatico.md
 nav:
-  - Home: index.md
+  - Página Inicial: index.md
   - Handout:
-    - O universo da Computação em Nuvem: getting-started.md
-    - Conhecendo e entendendo a AWS: creating-your-site.md
-    - Utilizando seu primeiro serviço na AWS para hospedar um site estático: publishing-your-site.md
-    - Desenvolvendo a infraestrutura: customization.md
-    - Vídeos interessantes: browser-support.md
+    - O universo da Computação em Nuvem: universo-da-computacao-em-nuvem.md #getting-started.md
+    - Conhecendo e entendendo a AWS: conhecendo-a-aws.md #creating-your-site.md
+    - Utilizando seu primeiro serviço na AWS para hospedar um site estático no S3: hospedar-um-site-estatico.md #publishing-your-site.md
+    - S3, Lambda, API Gateway e CloudWatch - Desenvolvendo a infraestrutura: desenvolvendo-a-infraestrutura.md #customization.md
+    - Vídeos interessantes: videos-interessantes.md #browser-support.md
     #- Referências: philosophy.md
     # - Alternatives: alternatives.md
     # - License: license.md

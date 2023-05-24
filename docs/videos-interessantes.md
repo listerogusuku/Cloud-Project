@@ -1,9 +1,9 @@
-Aqui você pode conferir alguns vídeos que eu acho muito interessantes e que me fizeram entender um pouco mais sobre o universo da Computação em Nuvem.
+Aqui você pode conferir alguns vídeos que eu achei interessantes e que me fizeram entender um pouco mais sobre o universo da Computação em Nuvem.
 
 
-Logo no primeiro vídeo, temos algo **BIZARRO, mas SENSACIONAL.** Todas as camadas de segurança necessárias para adentrar um dos data centers do Google:
+Logo no primeiro vídeo, temos algo **assustador, mas SENSACIONAL.** Todas as camadas de segurança necessárias para adentrar um dos data centers do Google:
 
-_Após assistir ao vídeo a seguir, provavelmente você vai ter certeza que os dados valem mais do que qualquer valor monetário atualmente. O dado é, de fato, o novo petróleo?_
+_Após assistir ao vídeo a seguir, provavelmente você vai ter certeza que os dados valem mais do que qualquer valor monetário atualmente. Será que o dado é, de fato, o novo petróleo?_
 
 <iframe width="1480" height="546" src="https://www.youtube.com/embed/kd33UVZhnAA" title="Google Data Center Security: 6 Layers Deep" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
