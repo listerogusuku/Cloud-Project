@@ -4,6 +4,8 @@ Chegou a hora de utilizar o seu primeiro serviço da AWS: o **AWS S3.**
 
 > O **_Amazon Simple Storage Service (Amazon S3)_** é um serviço de armazenamento de objetos que oferece **_escalabilidade, disponibilidade de dados, segurança e performance líderes do setor._** Clientes de todos os portes e setores podem **_armazenar e proteger qualquer quantidade de dados_** de praticamente qualquer caso de uso, como data lakes, aplicações nativas da nuvem e aplicações móveis. Com classes de armazenamento econômicas e recursos de gerenciamento fáceis de usar, você pode **_otimizar custos, organizar dados e configurar controles de acesso ajustados para atender a requisitos específicos de negócios, organizacionais e de conformidade._** _(Texto extraído da página do S3 na AWS)_
 
+![AWS S3](./screenshots/AWS_S3.png)
+
 ## Exemplos de uso do S3
 
 **Armazenamento de backup:** Você pode usar o S3 para armazenar backups de bancos de dados, servidores, arquivos de log e outros dados importantes. Ele oferece alta durabilidade, redundância e segurança para garantir a proteção dos seus backups.
@@ -16,7 +18,7 @@ Esses são apenas alguns exemplos de uso do AWS S3. A flexibilidade e a escalabi
 
 ## Hospedando site estático no S3
 
-Começaremos a colocar a mão na massa hospedando um site estático simples no S3 de forma manual via dashboard da AWS.
+Começaremos a colocar a mão na massa **hospedando um site estático simples no S3 de forma manual via dashboard da AWS.**
 
 ### Criando um bucket S3
 

@@ -28,7 +28,7 @@ _O vídeo a seguir - disponibilizado e produzido pela própria AWS - explica um 
 
 Ainda não ficou claro a importância do uso da AWS? Então vamos contextulizar um pouco!
 
-## A AWS no dia-a-dia das corporações
+## A AWS no dia-a-dia das pessoas e corporações
 
 ### **AWS no Comércio Eletrônico:**
 
