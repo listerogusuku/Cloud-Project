@@ -4,7 +4,7 @@
 
 O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem [**AWS (Amazon Web Services).**](https://aws.amazon.com/pt/what-is-aws/) A ideia é subir uma aplicação sem servidor na AWS utilizando o **[S3](https://aws.amazon.com/pt/s3/), [Lambda](https://aws.amazon.com/pt/lambda/), [API Gateway](https://aws.amazon.com/pt/api-gateway/) e o [CloudWatch](https://aws.amazon.com/pt/cloudwatch/)** colocando em prática os conceitos de **IaaC (Infrastructure as a Code)**. O diagrama visual da nossa aplicação pode ser conferido a seguir:
 
-**--------------------------------------DIAGRAMA DA APLICAÇÃO--------------------------------------**
+![Diagrama da Aplicação](./screenshots/DIAGRAMA_CLOUD.png)
 
 ## Desenvolvendo a infraestrutura
 
@@ -23,6 +23,8 @@ O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Comput
 - Terraform instalado na máquina (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS).
 
 - [Visual Studio Code (VS Code).](https://code.visualstudio.com)
+
+- [AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html) (Se você desejar **apenas ver a infra** criada pelo Terraform no dashboard da AWS, não há necessidade).
 
 ### 2. Instalação do Terraform
 
@@ -87,7 +89,8 @@ Essas duas partes são obrigatórias no tutorial:
 
 ## Credenciais AWS no Terraform
 
-Antes de darmos início, é necessário cadastrar suas credenciais AWS na sua máquina. Temos várias formas de fazer isso, porém iremos optar pela alternativa que eu considero mais segura para quem está iniciando na AWS (incluindo eu mesmo): cadastrar diretamente via terminal.
+Antes de darmos início, é necessário **cadastrar suas credenciais AWS na sua máquina.**
+Temos várias formas de fazer isso, porém iremos optar pela alternativa que eu considero mais segura para quem está iniciando na AWS (incluindo eu mesmo): cadastrar diretamente via terminal.
 Você deve possuir um .csv com a chave de acesso (Secret Key) e a chave secreta (Secret Access Key) de acesso da sua conta, precisaremos dessas informações agora.
 Dentro do terminal Ubuntu, insira os comandos:
 
@@ -97,8 +100,78 @@ aws configure
 
 Após o comando acima, serão solicitadas as suas chaves de acesso. Coloque-as no terminal como solicitado e bora trabalhar!
 
-Caso você desejar **criar a infra (tal como sugerido e explicado detalhadamente neste handout)**, vá para a aba **"Criando uma função Lambda no Terraform"** e continue o handout. Caso desejar **apenas rodá-la**, entre na pasta que você clonou a infra e rode os seguintes comandos:
+## Rodando a aplicação (APENAS rodar a infra já criada)
 
+
+Caso você desejar **criar a infra (tal como sugerido e explicado detalhadamente neste handout)**, vá para a aba **"Criando a infraestrutura do zero"** e continue o handout. Caso desejar **apenas rodá-la**, entre na pasta que você clonou a infra e, dentro do diretório "Cloud-Project/terraform" rode os seguintes comandos:
+
+```
+terraform init
+```
+![TERRAFORM INIT](./screenshots/terraform_init.png)
+
+E, em seguida, rode:
+
+```
+terraform apply
+```
+
+![TERRAFORM INIT](./screenshots/terraform_apply.png)
+
+Após tudo ter funcionado, a infra foi construída na AWS, agora é só testar! Para testar, digite no terminal:
+
+```tf
+curl -X POST \
+-H "Content-Type: application/json" \
+-d '{"name":"Insper"}' \
+"https://<id>.execute-api.us-east-1.amazonaws.com/dev/hello"
+          /\
+          ||
+Substitua <id> pelo seu id retornado no prompt de comando
+
+```
+
+!!! Dica
+
+    Além do prompt de comando, teste também diretamente no seu navegador!
+    Para fazer isso, basta substituir a url que foi retornada e passar algum parâmetro após "Name", da seguinte forma:
+
+    https:// SEU-ID-AQUI .execute-api.us-east-1.amazonaws.com/dev/hello **+ o parâmetro** ?Name=Lister
+
+    Por exemplo:
+
+    https://2cmcnumb2l.execute-api.us-east-1.amazonaws.com/dev/hello?Name=Lister
+
+Podemos também invocar essa função com o nome do bucket reebido no prompt de comando + nosso objeto para ver se o lambda conseguirá obter o objeto do bucket.
+
+```sh
+aws lambda invoke \
+--region=us-east-1 \
+--function-name=s3 \
+--cli-binary-format raw-in-base64-out \
+--payload '{"bucket":"test-<your>-<name>","object":"hello.json"}' \
+response.json
+                             /\
+                             ||
+      Substitua test-<your>-<name> pelo nome do seu bucket
+
+```
+
+Rode no terminal o seguinte comando:
+
+```sh
+cat response.json
+
+```
+
+:octicons-heart-fill-24:{ .mdx-heart } &nbsp; Se você receber como retorno **_Yeah, I am working from Insper, Avelinux :)_**, parabéns, você concluiu sua aplicação e ela está funcionando!
+
+!!! warning "Dica Visual"
+
+    Se entrarmos no dashboard do **CloudWatch** novamente, conseguiremos ver os logs de acesso registrados para nossas solicitações.
+
+
+## Criando a infraestrutura do zero
 ## Criando uma função Lambda no Terraform
 
 O primeiro passo será criarmos uma função lambda que, futuramente, será integrada com o AWS API Gateway.
@@ -569,8 +642,7 @@ terraform apply
 > :warning: **Dica visual**
 
 > Quando o terraform concluir suas etapas até aqui, podemos entrar no dashboard da AWS e encontrar, dentre outras coisas, um bucket S3 recém-criado com um nome definido por meio de um gerador de animais de estimação aleatório.
-> ![terraforminit](screenshots/003.png)
-> ![terraforminit](screenshots/004.png)
+> ![terraforminit](screenshots/003.png) > ![terraforminit](screenshots/004.png)
 
 ---
 
@@ -597,6 +669,7 @@ aws lambda invoke --region=us-east-1 --function-name=hello response.json
 ```
 
 ![terraforminit](screenshots/007.png)
+
 Ao printarmos a resposta, é esperado um retorno **"Olá, Avelino!"**
 
 ```tf
@@ -791,9 +864,7 @@ terraform apply
 
 > :warning: **Dica visual**
 
-> _Se entrarmos no dashboard do **API Gateway**, podemos ver nosso estágio de desenvolvimento "dev" criado e, em "rotas", conseguimos encontrar os métodos ***GET e POST.***_
-> ![terraforminit](screenshots/0011.png)
-> ![terraforminit](screenshots/0012.png)
+> _Se entrarmos no dashboard do **API Gateway**, podemos ver nosso estágio de desenvolvimento "dev" criado e, em "rotas", conseguimos encontrar os métodos ***GET e POST.***_ > ![terraforminit](screenshots/0011.png) > ![terraforminit](screenshots/0012.png)
 
 Até essa etapa, **se você estiver seguindo a risca minha forma de fazer esse handout**, é esperada que a estrutura do seu código esteja como na imagem abaixo:
 
@@ -808,12 +879,12 @@ A função deve analisá-lo e retornar a mensagem **"Olá, _+ parâmetro de URL_
 curl "https://<id>.execute-api.us-east-1.amazonaws.com/dev/hello?Name=InsperUniversity"
                /\
                ||
-    Substitua <id> pelo seu id
+Substitua <id> pelo seu id retornado no prompt de comando
 ```
 
 ![GET](screenshots/0013.png)
 
-Também testaremos o método POST. Nesse caso, fornecemos um payload como um objeto json para o terminal e veremos que funciona também.
+Também testaremos o método POST. Nesse caso, fornecemos um objeto json para o terminal e veremos que funciona também.
 
 ```tf
 curl -X POST \
@@ -822,17 +893,26 @@ curl -X POST \
 "https://<id>.execute-api.us-east-1.amazonaws.com/dev/hello"
           /\
           ||
-Substitua <id> pelo seu id
+Substitua <id> pelo seu id retornado no prompt de comando
 
 ```
 
 ![POST](screenshots/0014.png)
 
+!!! Dica
+
+    Além do prompt de comando, teste também diretamente no seu navegador!
+    Para fazer isso, basta substituir a url que foi retornada e passar algum parâmetro após "Name", da seguinte forma:
+
+    https:// SEU-ID-AQUI .execute-api.us-east-1.amazonaws.com/dev/hello **+ o parâmetro** ?Name=Lister
+
+    Por exemplo:
+
+    https://2cmcnumb2l.execute-api.us-east-1.amazonaws.com/dev/hello?Name=Lister
+
 > :warning: **Dica visual**
 
-> _Se entrarmos no dashboard do **CloudWatch**, conseguiremos ver os logs de acesso registrados para nossas solicitações._
-> ![Logs_CloudWatch](screenshots/0016.png)
-> ![Logs_CloudWatch](screenshots/0027.png)
+> _Se entrarmos no dashboard do **CloudWatch**, conseguiremos ver os logs de acesso registrados para nossas solicitações._ > ![Logs_CloudWatch](screenshots/0016.png) > ![Logs_CloudWatch](screenshots/0027.png)
 
 ## Criando função lambda com dependências externas e acesso ao bucket S3
 
@@ -1113,13 +1193,17 @@ response.json
 Por fim, rode no terminal o seguinte comando:
 
 ```sh
-cat responde.json
+cat response.json
 
 ```
 
 ![S3_funcionando](screenshots/0021.png)
 
 :octicons-heart-fill-24:{ .mdx-heart } &nbsp; Se você receber como retorno **_Yeah, I am working from Insper, Avelinux :)_**, parabéns, você concluiu sua aplicação e ela está funcionando!
+
+!!! warning "Dica Visual"
+
+    Se entrarmos no dashboard do **CloudWatch** novamente, conseguiremos ver os logs de acesso registrados para nossas solicitações.
 
 Agora que você já viu todo o ambiente da sua IaaC (Infrastructure as a Code) sendo criado e funcionando, **chegou a hora de destruí-lo!**
 
@@ -1136,6 +1220,18 @@ O resultado final deve ser algo parecido com a imagem a seguir:
 !!! warning "**Dica visual**"
 
     Entre no dashboard da AWS e veja que todos os recursos sumiram: eles foram destruídos!
+
+## Conclusão
+
+Parabéns, você acaba de construir _(e destruir também)_ toda uma infraestrutura serverless na AWS! E aí, está se sentindo mais preparado para dar início aos seus próprios projetos?
+
+Você viu como foi **bem mais fácil** construir toda nossa infraestrutura rodando apenas um conjunto de códigos de uma só vez ao invés de criar serviço por serviço via dashboard da AWS?
+
+A intenção do handout acima era justamente essa! Queria mostrar pra vocês como o uso do Terraform facilita _- e muito -_ o nosso trabalho e também mostrar um pouco o poder do uso da Computação em Nuvem. Lembre-se que **o universo Cloud é imenso e possui milhares de possibilidades**, então **não se restrinja** apenas a criar aplicações sem servidor ou sites estáticos! Conheça novos serviços e começe a desfrutar cada vez mais do incrível poder que a Computação em Nuvem pode te oferecer! _(E olha que eu nem estou sendo patrocinado para falar tudo isso aqui! Alô @AWS, cadê meu cachê??!!)_
+
+Antes de finalizar, confira a seção **"Vídeos de aprofundamento"** _(caso você ainda não tenha conferido)_ para entender um pouco melhor _(e de forma mais visual)_ o mundo da Computação em Nuvem. Também recomendo conferir a aba **"Referências"**, lá eu deixei vários links que me ajudaram a compreender muito mais a fundo tudo que eu estava desenvolvendo na AWS _(e tudo que vocês viram neste handout)_ durante as últimas 2 semanas _(sim, ***até 2 semanas atrás eu não entendia absolutamente nada de AWS***, então se eu consegui aprender tudo isso até aqui, você também consegue)._
+
+Por hoje é só! Espero que tenham gostado de todo o material que eu montei aqui. Até a próxima! Tchau :)
 
 <!--
 # Desenvovendo a infraestrutura
