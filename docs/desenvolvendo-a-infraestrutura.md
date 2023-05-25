@@ -2,7 +2,7 @@
 
 ## :pencil: Sobre o Projeto
 
-O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem [**AWS (Amazon Web Services).**](https://aws.amazon.com/pt/what-is-aws/) A ideia é subir uma aplicação sem servidor na AWS utilizando o **[S3](https://aws.amazon.com/pt/s3/), [Lambda](https://aws.amazon.com/pt/lambda/), [API Gateway](https://aws.amazon.com/pt/api-gateway/) e o [CloudWatch](https://aws.amazon.com/pt/cloudwatch/)** colocando em prática os conceitos de **IaaC (Infrastructure as a Code)**. O diagrama visual da nossa aplicação pode ser conferido a seguir:
+O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem [**AWS (Amazon Web Services).**](https://aws.amazon.com/pt/what-is-aws/) A ideia é subir uma aplicação sem servidor na AWS utilizando o **[S3](https://aws.amazon.com/pt/s3/), [Lambda](https://aws.amazon.com/pt/lambda/), [API Gateway](https://aws.amazon.com/pt/api-gateway/) e o [CloudWatch](https://aws.amazon.com/pt/cloudwatch/)** colocando em prática os conceitos de **IaaC (Infrastructure as a Code)** por meio do Terraform. O diagrama visual da aplicação pode ser conferido a seguir:
 
 ![Diagrama da Aplicação](./screenshots/DIAGRAMA_CLOUD.png)
 
@@ -10,21 +10,21 @@ O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Comput
 
 ### 1. Pré-requisitos
 
-- Para rodar nossa infraestrutura, estamos utilizando o **Ubuntu 22.04.2 LTS** (o qual já estava instalado no nosso Windows). A infra pode funcionar em outras versões, porém **_não há garantia de funcionamento._** Assim sendo, indicamos o uso da versão supracitada para testar nossa aplicação (ou até mesmo rodar a sua própria).
+- Para rodar nossa infraestrutura, estamos utilizando o **Ubuntu 22.04.2 LTS** (o qual já estava instalado no nosso Windows). A infra pode funcionar em outras versões, porém **_não há garantia de funcionamento._** Assim sendo, indicamos o uso da versão supracitada para testar nossa aplicação (e até mesmo para criar e rodar a sua própria).
 
 ![ubuntu](screenshots/ubuntu.png)
 
 - Conta no [**Github**](https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorials-github-create-github-account.html) (+ [token de autorização](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), _se necessário_, com permissão de criação e atualização de repositórios), caso você desejar subir e deixar o projeto registrado.
 
-- [Node.js instalado na máquina.](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04) (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS via terminal).
+- [Node.js instalado na máquina.](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04) (no caso, instalei diretamente dentro do Ubuntu 22.04.2 LTS via terminal).
 
 - [Conta na AWS com usuário com permissões de Administrador.](https://docs.aws.amazon.com/pt_br/lex/latest/dg/gs-account.html)
 
-- Terraform instalado na máquina (no caso, instalamos diretamente dentro do Ubuntu 22.04.2 LTS).
+- Terraform instalado na máquina (no caso, instalei diretamente dentro do Ubuntu 22.04.2 LTS e explico no próximo tópico como fazer você também).
 
 - [Visual Studio Code (VS Code).](https://code.visualstudio.com)
 
-- [AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html) (Se você desejar **apenas ver a infra** criada pelo Terraform no dashboard da AWS, não há necessidade).
+- [AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html)
 
 ### 2. Instalação do Terraform
 
@@ -40,7 +40,7 @@ Caso você não possua o Terraform no seu computador, é necessário baixar e in
 
 Após a instalação do Terraform na máquina, já é possível rodar a infraestrutura desenvolvida ou criar sua própria infraestrutura com base em tudo que está sendo apresentado aqui.
 
-O primeiro passo é clonar este repositório em uma pasta dentro do seu computador. _Caso não saiba como clonar um repositório na sua máquina local, acesse o tutorial presente [neste link](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) ou faça o download do respositório e descompacte o arquivo .zip no local desejado._
+O primeiro passo é **clonar este repositório** em uma pasta dentro do seu computador. _Caso não saiba como clonar um repositório na sua máquina local, acesse o tutorial presente [neste link](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) ou faça o download do respositório e descompacte o arquivo .zip no local desejado._
 
 !!! Dica
 
@@ -90,8 +90,37 @@ Essas duas partes são obrigatórias no tutorial:
 ## Credenciais AWS no Terraform
 
 Antes de darmos início, é necessário **cadastrar suas credenciais AWS na sua máquina.**
-Temos várias formas de fazer isso, porém iremos optar pela alternativa que eu considero mais segura para quem está iniciando na AWS (incluindo eu mesmo): cadastrar diretamente via terminal.
-Você deve possuir um .csv com a chave de acesso (Secret Key) e a chave secreta (Secret Access Key) de acesso da sua conta, precisaremos dessas informações agora.
+Temos várias formas de fazer isso, porém iremos optar pela alternativa que eu considero mais segura para quem está iniciando na AWS (incluindo eu mesmo): cadastrar diretamente via terminal. _Sim, pode haver várias outras formas de fazer isso, então se você considera alguma outra melhor, fique à vontade._
+
+Você deve possuir um .csv com a chave de acesso (Secret Key) e a chave secreta (Secret Access Key) de acesso da sua conta AWS, precisaremos dessas informações agora.
+
+!!! warning "Aviso"
+
+    A partir de agora, todos os comandos que utilizarmos ou alterações realizadas via prompt de comando deve ser feitas dentro da pasta que designamos para trabalhar neste projeto.
+    Eu optei por trabalhar dentro da raiz da minha máquina, ou seja, **dentro do meu diretório**, estou trabalhando na seguinte pasta:
+
+    root@Lister:/mnt/c/Computacao_em_Nuvem/testando-o-projeto-01/Cloud-Project
+
+
+!!! Dica
+
+    Para manipular arquivos dentro do terminal do Ubuntu, utilize os comandos:
+
+    **cd** --> Para navegar entre as pastas dentro do seu computador;
+
+    **ls** --> para visualizar os arquivos dentro das pastas;
+
+
+    Exemplo de uso:
+
+    **cd /mnt/c** --> Entrei na raiz do meu computador;
+    
+    
+    **cd ..** --> Sai da raiz e "voltei um caminho", ou seja, agora estou no diretório "/mnt";
+
+    **code .** --> Abre toda sua pasta dentro do VS Code (isso sempre me ajuda muito).
+
+
 Dentro do terminal Ubuntu, insira os comandos:
 
 ```
@@ -100,10 +129,10 @@ aws configure
 
 Após o comando acima, serão solicitadas as suas chaves de acesso. Coloque-as no terminal como solicitado e bora trabalhar!
 
-## Rodando a aplicação (APENAS rodar a infra já criada)
+## Rodando a aplicação (se você desejar APENAS rodar a infra já criada)
 
 
-Caso você desejar **criar a infra (tal como sugerido e explicado detalhadamente neste handout)**, vá para a aba **"Criando a infraestrutura do zero"** e continue o handout. Caso desejar **apenas rodá-la**, entre na pasta que você clonou a infra e, dentro do diretório "Cloud-Project/terraform" rode os seguintes comandos:
+Caso você desejar **criar a infra (tal como sugerido e explicado detalhadamente neste handout)**, vá para a aba **["Criando a infraestrutura do zero"](https://listerogusuku.github.io/Cloud-Project/desenvolvendo-a-infraestrutura/#criando-a-infraestrutura-do-zero)** e continue o handout. Caso desejar **apenas rodá-la**, entre na pasta que você clonou a infra e, dentro do diretório "Cloud-Project/terraform" rode os seguintes comandos:
 
 ```
 terraform init
@@ -113,12 +142,30 @@ terraform init
 E, em seguida, rode:
 
 ```
+terraform plan
+```
+
+> The ***terraform plan command*** creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure. _(Texto extraído do site da Hashicorp)_
+
+> O comando ***terraform plan*** cria um plano de execução, que permite visualizar as alterações que o Terraform planeja fazer em sua infraestrutura. _(Texto traduzido do site da Hashicorp)_
+
+E, para finalizar, rode:
+
+```
 terraform apply
 ```
 
 ![TERRAFORM INIT](./screenshots/terraform_apply.png)
 
-Após tudo ter funcionado, a infra foi construída na AWS, agora é só testar! Para testar, digite no terminal:
+Após tudo ter funcionado, **a infra foi construída na AWS**, agora é só testar! 
+
+!!! Dica
+
+    Entre na sua **dashboard da AWS**, verifique todos os serviços criados e **tente entender como tudo foi criado e o que está acontecendo entre os serviços** (para isso, observar o diagrama apresentado no início do handout pode ajudar).
+
+
+Para testar, digite no terminal:
+
 
 ```tf
 curl -X POST \
@@ -175,6 +222,12 @@ cat response.json
 ## Criando uma função Lambda no Terraform
 
 O primeiro passo será criarmos uma função lambda que, futuramente, será integrada com o AWS API Gateway.
+
+
+Mas o que é o "Lambda"?
+
+A AWS Lambda é um **serviço de computação sem servidor** que permite executar código de forma escalável e **sem a necessidade de gerenciar servidores.** Ela é projetada para responder a eventos específicos, como **alterações em um bucket do Amazon S3 ou atualizações em uma tabela do Amazon DynamoDB.**
+
 Inicialmente, começaremos com uma função simples baseada em **NodeJS** sem nenhuma dependência.
 
 <!--
@@ -443,6 +496,8 @@ resource "aws_iam_role_policy_attachment" "hello_lambda_policy" {
 
 ## Criando o CloudWatch
 
+O CloudWatch é um serviço de **monitoramento e observabilidade** oferecido pela AWS. Ele permite que você **colete e monitore métricas, registros e eventos de diferentes recursos e serviços da AWS, fornecendo insights valiosos sobre o desempenho, a saúde e a disponibilidade do seu ambiente de nuvem.** Com o CloudWatch, você pode definir alarmes para acionar ações automáticas, criar painéis personalizados para visualizar dados em tempo real, além de acessar informações históricas para análise e solução de problemas. Ele é uma ferramenta fundamental para garantir o **monitoramento proativo e a operação eficiente dos seus recursos na nuvem da AWS.**
+
 Para depurar, criamos um grupo de logs do CloudWatch que conseguisse armazenar todas as instruções e erros do console.log na função.
 Definimos a retenção para 30 dias, porém poderia ser uma quantidade maior ou menor também, a depender das intenções de quem está
 desenvolvendo a infraestrutura (além dessas decisões poderem afetar o custo de execução do lambda).
@@ -682,7 +737,7 @@ cat response.json
 
 A próxima estapa será criar o API Gateway e integrá-lo ao nosso lambda.
 
-Utilizaremos a versão 2 do API Gateway.
+O API Gateway é um serviço da AWS que permite **criar, publicar, proteger e gerenciar APIs (Interfaces de Programação de Aplicativos).** Ele atua como um ponto de entrada para os aplicativos acessarem funcionalidades e dados, fornecendo recursos como **autenticação, autorização, limitação de taxa e transformação de dados.** O API Gateway simplifica o processo de criação de APIs, permitindo que você se concentre na lógica do aplicativo, enquanto ele gerencia aspectos como escalabilidade, segurança e monitoramento. Com o API Gateway, é possível **criar APIs RESTful ou WebSocket para integrar e expor seus serviços e recursos de forma segura na nuvem da AWS.**
 
 === "**terraform/api-gateway.tf**"
 

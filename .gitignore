@@ -22,6 +22,25 @@
 # Node, TypeScript, Python
 # -----------------------------------------------------------------------------
 
+
+.eslintrc
+.dockerignore
+.browserlistrc
+.editorconfig
+.gitattributes
+.stylelintrc
+.stylelintrcignore
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE
+giscus.json
+package-lock.json
+package.json
+pyprotect.toml
+tsconfig.json
+Dockerfile
+CHANGELOG
+
 # Dependencies
 node_modules
 __pycache__

@@ -44,7 +44,7 @@ Todas as demais configurações deixaremos padrão, como nas imagens a seguir:
 
 !!! warning "Atenção!"
 
-    O acesso que estamos configurando é o da bucket como um todo. Por questão de boa prática, deixaremos o acesso público aqui presente desativado e mostraremos ainda neste tutorial como definir as regras de segurança para cada arquivo.
+    O acesso que estamos configurando é o do bucket como um todo. Por questão de boa prática, deixaremos o acesso público aqui nessa etapa desativado e mostraremos ainda neste tutorial como definir as regras de segurança para cada arquivo.
 
 ![AWS S3 DASHBOARD 4](./screenshots/aws_dashboard_04.png)
 
@@ -68,7 +68,7 @@ Em seguida, desmarque a caixa com a opção "Bloquear todo o acesso público" e 
 
 ![AWS S3 DASHBOARD 4](./screenshots/aws_dashboard_08.png)
 
-Em seguida, procure por "Propriedade de Objeto" e selecione a opção "ACLs habilitadas":
+Em seguida, procure por "Propriedade de Objeto", selecione a opção "ACLs habilitadas" e salve as alterações:
 
 ![AWS S3 DASHBOARD 4](./screenshots/aws_dashboard_09.png)
 
@@ -82,7 +82,7 @@ Agora procure por "Lista de controle de acesso (ACL)" e clique em "Editar":
 
     AGORA TOME MUITO CUIDADO!
 
-Nessa página nós **NÃO** faremos nenhuma alteração. Chegamos até aqui apenas para você ver que **nosso bucket não está com a opção de "Acesso público para todos" ativada**, ou seja, seguimos a boa prática de não liberar o bucket como um todo para acesso público. Assim sendo, você já pode sair dessa página.
+Nessa página nós **NÃO** faremos nenhuma alteração. Chegamos até aqui apenas para você ver que **nosso bucket não está com a opção de "Acesso público para todos" ativada**, ou seja, seguimos a boa prática de **não liberar o bucket como um todo para acesso público.** Assim sendo, você já pode sair dessa página.
 
 ![AWS S3 DASHBOARD 4](./screenshots/aws_dashboard_012.png)
 
@@ -102,14 +102,13 @@ Após caregar, você deverá ver uma página com um link para o seu bucket do S3
 
 ### Vish, deu ruim!
 
-Ao clicar no link, é esperado que você entre em uma página semelhante a da imagem a seguir e não consiga acessar o conteúdo do bucket _(pense um pouco em tudo o que falamos sobre "boas práticas" de acesso ao bucket como um todo e aos arquivos para entender o que houve)._
+Ao clicar no link, é esperado que você entre em uma página semelhante a da imagem a seguir e não consiga acessar o conteúdo do bucket _(pense um pouco em tudo o que falamos sobre "boas práticas de acesso ao bucket" como um todo e aos arquivos para entender o que houve)._
 
 ![AWS S3 DASHBOARD 4](./screenshots/aws_dashboard_016.png)
 
 ??? question "Hora de pensar: Por que não estamos conseguindo acessar nosso site e o que fazer?"
 
-    Ok, queremos acessar o conteúdo do bucket (nosso site) pelo link, mas não estamos conseguindo, o que fazer então? Simples! Iremos deixar os arquivos que desejamos exibir públicos! Para isso, acesse o arquivo que você carregou no S3 e vá na aba "Permissões". Dentro dessa aba, clique em "Editar" e, em seguida, habilite as opções de leitura para todos. Salve as alterações e atualize a página com o link que você tinha tentado acessar previamente.
-
+    Ok, queremos acessar o conteúdo do bucket (nosso site) pelo link, mas não estamos conseguindo, o que fazer então? Simples! Iremos deixar **os arquivos que desejamos exibir públicos!** Para isso, acesse o arquivo que você carregou no S3 e vá na aba **"Permissões".** Dentro dessa aba, clique em **"Editar"** e, em seguida, **habilite as opções de leitura para todos.** Salve as alterações e atualize a página com o link que você tinha tentado acessar previamente.
 
 ![AWS S3 DASHBOARD 4](./screenshots/aws_dashboard_017.png)
 ![AWS S3 DASHBOARD 4](./screenshots/aws_dashboard_018.png)
@@ -124,9 +123,10 @@ Algns dias antes de eu escrever esse tutorial eu também havia criado um site es
 
 ![AWS S3 DASHBOARD 4](./screenshots/aws_dashboard_020.png)
 
-Se você desejar criar seu próprio site estático apenas com o S3 subindo o mesmo html que eu utilizei acima, deixarei o código disponível para você testar:
+Se você desejar criar seu próprio site estático **apenas com o S3** subindo o mesmo html que eu utilizei para o exemplo acima, deixarei o código disponível para você testar:
 
 === "**index.html**"
+
 ```html linenums="1"
 <!DOCTYPE html>
 <html>
@@ -191,12 +191,12 @@ Se você desejar criar seu próprio site estático apenas com o S3 subindo o mes
 
 !!! warning "Atenção!"
 
-    Se você subir o html acima somente no seu bucket S3, ele não fará absolutamente nada além de exibir o front para você, pois não está conectado a outros serviços AWS, como o Lambda e DynamoDB, portanto nenhuma informação será armazenada. Assim sendo, fica como um desafio você utilizar outros serviços AWS que façam essa integração e armazenem o input do usuário dentro do nosso banco de dados, por exemplo.
+    Se você subir o html acima **somente no seu bucket S3**, ele **não fará absolutamente nada** além de exibir o front para você, pois **não está conectado a outros serviços AWS, como o Lambda e DynamoDB**, portanto nenhuma informação será armazenada em um banco de dados, por exemplo. Assim sendo, **fica como um desafio você utilizar outros serviços AWS que façam essa integração e armazenem o input do usuário dentro do nosso banco de dados, por exemplo.**
 
 ## Vamos tornar tudo mais rápido?
 
-Criar seu primeiro bucket no S3 de forma manual via dashboard da AWS foi fácil, não é mesmo? Mas será que é realmente **viável** sempre que você desejar criar um bucket, fazer todo esse procedimento várias e várias vezes? E se agora você precisasse criar o **ambiente completo** dessa mesma forma, **criando um por um, o bucket do S3, a função Lambda, o API Gateway e o banco de dados DynamoDB**, parece um pouco exaustivo e demorado, não é mesmo? Saiba que não parece, é! Mas, para nossa sorte, já temos à disposição ferramentas poderosas que **criam toda nossa infraestrutura em segundos**, sem que tenhamos que criar manualmente, serviço por serviço, regra por regra.
-Chegou a hora de conhecer e construir sua primeira **Infraestrutura como código!**
+Criar seu primeiro bucket no S3 de forma manual via dashboard da AWS foi fácil, não é mesmo? Mas será que é realmente **viável** sempre que você desejar criar um bucket, fazer todo esse procedimento várias e várias vezes? E se agora você precisasse criar o **ambiente completo** dessa mesma forma, **criando um por um, o bucket do S3, a função Lambda, o API Gateway e o banco de dados DynamoDB**, parece um pouco exaustivo e demorado, não é mesmo? Saiba que **não parece, é!** Mas, para nossa sorte, já temos à disposição ferramentas poderosas que **criam toda nossa infraestrutura em segundos**, sem que tenhamos que criar manualmente, serviço por serviço, regra por regra.
+Chegou a hora de conhecer e construir sua primeira **Infraestrutura como código!** Preparado?
 
 <!-- # Publishing your site
 
