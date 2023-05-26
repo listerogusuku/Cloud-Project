@@ -2,7 +2,7 @@
 
 ## :pencil: Sobre o Projeto
 
-O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem [**AWS (Amazon Web Services).**](https://aws.amazon.com/pt/what-is-aws/) A ideia é subir uma aplicação sem servidor na AWS utilizando o **[S3](https://aws.amazon.com/pt/s3/), [Lambda](https://aws.amazon.com/pt/lambda/), [API Gateway](https://aws.amazon.com/pt/api-gateway/) e o [CloudWatch](https://aws.amazon.com/pt/cloudwatch/)** colocando em prática os conceitos de **IaaC (Infrastructure as a Code)** por meio do Terraform. O diagrama visual da aplicação pode ser conferido a seguir:
+O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Computing) por meio da plataforma de serviços de Computação em Nuvem [**AWS (Amazon Web Services).**](https://aws.amazon.com/pt/what-is-aws/){:target="\_blank"} A ideia é subir uma aplicação sem servidor na AWS utilizando o **[S3](https://aws.amazon.com/pt/s3/){:target="\_blank"}, [Lambda](https://aws.amazon.com/pt/lambda/){:target="\_blank"}, [API Gateway](https://aws.amazon.com/pt/api-gateway/){:target="\_blank"} e o [CloudWatch](https://aws.amazon.com/pt/cloudwatch/){:target="\_blank"}** colocando em prática os conceitos de **IaaC (Infrastructure as a Code)** por meio do Terraform. O diagrama visual da aplicação pode ser conferido a seguir:
 
 ![Diagrama da Aplicação](./screenshots/DIAGRAMA_CLOUD.png)
 
@@ -18,13 +18,13 @@ O Projeto a seguir visa aplicar conceitos de Computação em Nuvem (Cloud Comput
 
 - [Node.js instalado na máquina.](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04) (no caso, instalei diretamente dentro do Ubuntu 22.04.2 LTS via terminal).
 
-- [Conta na AWS com usuário com permissões de Administrador.](https://docs.aws.amazon.com/pt_br/lex/latest/dg/gs-account.html)
+- [Conta na AWS com usuário com permissões de Administrador.](https://docs.aws.amazon.com/pt_br/lex/latest/dg/gs-account.html){:target="\_blank"}
 
 - Terraform instalado na máquina (no caso, instalei diretamente dentro do Ubuntu 22.04.2 LTS e explico no próximo tópico como fazer você também).
 
-- [Visual Studio Code (VS Code).](https://code.visualstudio.com)
+- [Visual Studio Code (VS Code).](https://code.visualstudio.com){:target="\_blank"}
 
-- [AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html)
+- [AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html){:target="\_blank"}
 
 ### 2. Instalação do Terraform
 
@@ -101,7 +101,6 @@ Você deve possuir um .csv com a chave de acesso (Secret Key) e a chave secreta 
 
     root@Lister:/mnt/c/Computacao_em_Nuvem/testando-o-projeto-01/Cloud-Project
 
-
 !!! Dica
 
     Para manipular arquivos dentro do terminal do Ubuntu, utilize os comandos:
@@ -114,12 +113,11 @@ Você deve possuir um .csv com a chave de acesso (Secret Key) e a chave secreta 
     Exemplo de uso:
 
     **cd /mnt/c** --> Entrei na raiz do meu computador;
-    
-    
+
+
     **cd ..** --> Sai da raiz e "voltei um caminho", ou seja, agora estou no diretório "/mnt";
 
     **code .** --> Abre toda sua pasta dentro do VS Code (isso sempre me ajuda muito).
-
 
 Dentro do terminal Ubuntu, insira os comandos:
 
@@ -131,12 +129,12 @@ Após o comando acima, serão solicitadas as suas chaves de acesso. Coloque-as n
 
 ## Rodando a aplicação (se você desejar APENAS rodar a infra já criada)
 
-
 Caso você desejar **criar a infra (tal como sugerido e explicado detalhadamente neste handout)**, vá para a aba **["Criando a infraestrutura do zero"](https://listerogusuku.github.io/Cloud-Project/desenvolvendo-a-infraestrutura/#criando-a-infraestrutura-do-zero)** e continue o handout. Caso desejar **apenas rodá-la**, entre na pasta que você clonou a infra e, dentro do diretório "Cloud-Project/terraform" rode os seguintes comandos:
 
 ```
 terraform init
 ```
+
 ![TERRAFORM INIT](./screenshots/terraform_init.png)
 
 E, em seguida, rode:
@@ -145,9 +143,9 @@ E, em seguida, rode:
 terraform plan
 ```
 
-> The ***terraform plan command*** creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure. _(Texto extraído do site da Hashicorp)_
+> The **_terraform plan command_** creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure. _(Texto extraído do site da Hashicorp)_
 
-> O comando ***terraform plan*** cria um plano de execução, que permite visualizar as alterações que o Terraform planeja fazer em sua infraestrutura. _(Texto traduzido do site da Hashicorp)_
+> O comando **_terraform plan_** cria um plano de execução, que permite visualizar as alterações que o Terraform planeja fazer em sua infraestrutura. _(Texto traduzido do site da Hashicorp)_
 
 E, para finalizar, rode:
 
@@ -157,15 +155,13 @@ terraform apply
 
 ![TERRAFORM INIT](./screenshots/terraform_apply.png)
 
-Após tudo ter funcionado, **a infra foi construída na AWS**, agora é só testar! 
+Após tudo ter funcionado, **a infra foi construída na AWS**, agora é só testar!
 
 !!! Dica
 
     Entre na sua **dashboard da AWS**, verifique todos os serviços criados e **tente entender como tudo foi criado e o que está acontecendo entre os serviços** (para isso, observar o diagrama apresentado no início do handout pode ajudar).
 
-
 Para testar, digite no terminal:
-
 
 ```tf
 curl -X POST \
@@ -217,12 +213,11 @@ cat response.json
 
     Se entrarmos no dashboard do **CloudWatch** novamente, conseguiremos ver os logs de acesso registrados para nossas solicitações.
 
-
 ## Criando a infraestrutura do zero
+
 ## Criando uma função Lambda no Terraform
 
 O primeiro passo será criarmos uma função lambda que, futuramente, será integrada com o AWS API Gateway.
-
 
 Mas o que é o "Lambda"?
 

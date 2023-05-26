@@ -65,6 +65,17 @@ Para seguir esse tutorial é necessário: -->
 </table>
 </div> -->
 
+!!! warning "Aviso"
+
+    Esse material faz parte do projeto final da disciplina **Computação em Nuvem** do [Insper](https://www.insper.edu.br){:target="_blank"}. Novas atualizações e adição de informações serão implementadas ao longo das próximas semanas (e, principalmente, durante as férias :pray:), porém fique tranquilo porque **o projeto aqui apresentado está pronto.** Futuras adições visam apenas **tornar o material ainda mais completo**.
+
+
+    Todo o material aqui desenvolvido foi modelado em **formato de handout para ser utilizado em sala de aula.** A minha ideia é fazer com que alguém com **ZERO** conhecimento em Computação em Nuvem consiga **dar os primeiros passos nesse universo e criar sua primeira infraestrutura na AWS de um jeito simples e didático.**
+    
+     _A última atualização do conteúdo foi realizada em maio de 2023**_
+
+
+
 ## :globe_with_meridians: O que é e para que serve a Computação em Nuvem?
 
 A computação em nuvem é um modelo de tecnologia de informação que permite o acesso sob demanda a um conjunto compartilhado de recursos de computação, como servidores, armazenamento, aplicativos e serviços, por meio da internet. Em outras palavras, a computação em nuvem é uma **_forma de disponibilizar recursos computacionais através da internet, em vez de ter todos os recursos armazenados localmente em um único computador ou servidor._** Esses recursos são gerenciados e mantidos por provedores de serviços em nuvem, como a **_Amazon Web Services, Microsoft Azure e Google Cloud Platform._**
