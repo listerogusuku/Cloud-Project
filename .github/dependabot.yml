@@ -18,26 +18,26 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-version: 2
-updates:
-- package-ecosystem: npm
-  open-pull-requests-limit: 10
-  directory: "/"
-  labels: []
-  schedule:
-    interval: weekly
-    time: "04:00"
-- package-ecosystem: pip
-  open-pull-requests-limit: 10
-  directory: "/"
-  labels: []
-  schedule:
-    interval: weekly
-    time: "04:00"
-- package-ecosystem: github-actions
-  open-pull-requests-limit: 10
-  directory: "/"
-  labels: []
-  schedule:
-    interval: weekly
-    time: "04:00"
+# version: 2
+# updates:
+# - package-ecosystem: npm
+#   open-pull-requests-limit: 10
+#   directory: "/"
+#   labels: []
+#   schedule:
+#     interval: weekly
+#     time: "04:00"
+# - package-ecosystem: pip
+#   open-pull-requests-limit: 10
+#   directory: "/"
+#   labels: []
+#   schedule:
+#     interval: weekly
+#     time: "04:00"
+# - package-ecosystem: github-actions
+#   open-pull-requests-limit: 10
+#   directory: "/"
+#   labels: []
+#   schedule:
+#     interval: weekly
+#     time: "04:00"
